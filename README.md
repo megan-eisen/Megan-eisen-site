@@ -58,6 +58,33 @@ Reduced-motion is handled two ways: the media query in `global.css` neutralizes
 transitions/animations and forces revealed content visible, and `motion.ts`
 skips the decorative behaviors entirely.
 
+## Deploy (GitHub Pages)
+
+Pushing to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
+which builds the site and publishes `dist/` to GitHub Pages. The site is
+configured for the apex custom domain **meganeisen.com** (`site` in
+`astro.config.mjs`, plus `public/CNAME`).
+
+**One-time setup:**
+
+1. **Enable Pages via Actions** — repo → **Settings → Pages → Build and
+   deployment → Source: GitHub Actions**. (Until this is set, the workflow's
+   deploy step fails with "Pages not enabled".)
+2. **Point DNS at GitHub Pages** — at your domain registrar, add for the apex
+   `meganeisen.com`:
+   - Four `A` records → `185.199.108.153`, `185.199.109.153`,
+     `185.199.110.153`, `185.199.111.153`
+   - (optional) `CNAME` for `www` → `megan-eisen.github.io`
+3. In **Settings → Pages → Custom domain**, confirm `meganeisen.com` and tick
+   **Enforce HTTPS** once the cert provisions.
+
+> Because the build targets the apex domain (no base path), the
+> `megan-eisen.github.io/Megan-eisen-site/` URL will render with broken absolute
+> links **by design** — it's meant to be served from `meganeisen.com`. If you'd
+> rather deploy under the github.io subpath instead of a custom domain, set
+> `base: '/Megan-eisen-site'` in `astro.config.mjs`, drop `public/CNAME`, and
+> switch the internal `href="/…"` links to Astro's `base`-aware URLs.
+
 ## ⚠️ Before launch — configure the contact form
 
 The contact form posts to **Formspree**. Create a form at
