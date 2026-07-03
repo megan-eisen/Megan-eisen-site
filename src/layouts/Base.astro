@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Container max-width: 1180px on Megan, 1120px on Óptimo. */
+  wrMax?: string;
+}
+
+const { title, description, wrMax = '1180px' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/assets/logo-megan.png" />
+
+    <!-- Fonts: Gloock (display), Newsreader (italic accent), Hanken Grotesk (UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+    <style is:global define:vars={{ wrMax }}>
+      :root {
+        --wr-max: var(--wrMax);
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import { initMotion } from '../scripts/motion';
+      // Run after the DOM is parsed. Astro places module scripts at end of body,
+      // so the DOM is already available, but guard just in case.
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMotion);
+      } else {
+        initMotion();
+      }
+    </script>
+  </body>
+</html>

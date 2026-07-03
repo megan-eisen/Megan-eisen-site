@@ -1,0 +1,718 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+  WHO_CARDS,
+  INFLECTIONS,
+  SYMPTOMS,
+  OFFER_MONTH_ONE,
+  OFFER_AFTER,
+  DELIVERABLES,
+  CONTACT_EMAIL,
+  LINKEDIN_URL,
+  OPTIMO_INTRO_MAILTO,
+} from '../lib/site';
+
+// Óptimo hero headline, split for the reveal + pointer-lean effects.
+const heroWords: { text: string; accent?: boolean }[] = [
+  { text: 'You' },
+  { text: 'built' },
+  { text: 'something' },
+  { text: 'people' },
+  { text: 'love.' },
+  { text: 'I', accent: true },
+  { text: 'help', accent: true },
+  { text: 'it', accent: true },
+  { text: 'hold', accent: true },
+  { text: 'up', accent: true },
+  { text: 'as', accent: true },
+  { text: 'it', accent: true },
+  { text: 'grows.', accent: true },
+];
+
+// Proof-bar marquee names (duplicated in markup for a seamless -50% loop).
+const proofNames = 'JPMorganChase · The Infatuation · Zagat · Avero · Four Seasons';
+
+// The alternating problem-grid cell padding (matches the reference's 2-col rule).
+function symptomCellStyle(i: number): string {
+  const left = i % 2 === 0;
+  const base =
+    'border-bottom:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;';
+  return left
+    ? `padding:1.4rem 2.4rem 1.4rem 0;border-right:1px solid var(--line);${base}`
+    : `padding:1.4rem 0 1.4rem 2.4rem;${base}`;
+}
+---
+
+<Base
+  title="Óptimo — Advisory for founder-led companies · Megan Eisen"
+  description="Óptimo is Megan Eisen's advisory practice for founder-led businesses where the experience is the product. One engagement, one senior partner in the room — helping you hold up as you grow."
+  wrMax="1120px"
+>
+  <!-- NAV -->
+  <header
+    style="position:sticky;top:0;z-index:100;background:rgba(239,242,246,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ink);"
+  >
+    <div
+      class="wr"
+      style="height:66px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;"
+    >
+      <a href="/" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;">
+        <img
+          src="/assets/logo-megan.png"
+          alt="Megan Eisen"
+          style="height:22px;width:auto;display:block;"
+        />
+        <span style="color:#A6ADB6;font-size:1.2rem;font-family:'Gloock',serif;line-height:1;">/</span>
+        <span class="ser" style="font-size:1.28rem;letter-spacing:0.01em;">Óptimo</span>
+      </a>
+      <nav class="nav" style="display:flex;align-items:center;gap:1.6rem;">
+        <a href="#how">How it works</a>
+        <a href="/">Megan Eisen →</a>
+      </nav>
+      <a
+        data-mag
+        href="#start"
+        style="background:var(--ind);color:#fff;padding:0.58rem 1.1rem;font:600 0.78rem/1 'Hanken Grotesk';text-decoration:none;transition:transform .15s;"
+        >Book an intro call</a
+      >
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section
+    id="top"
+    style="position:relative;overflow:hidden;padding:clamp(3.2rem,6vw,5.2rem) 0 clamp(2.6rem,4vw,3.8rem);background:var(--ink);color:var(--pp);"
+  >
+    <div class="wr">
+      <span class="lbl" style="color:var(--cy);"
+        >Óptimo · For founder-led businesses where the experience is the product</span
+      >
+      <h1
+        data-recal
+        data-kinetic
+        class="ser"
+        style="font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1.0;letter-spacing:-0.016em;margin-top:1.5rem;max-width:15ch;color:#fff;"
+      >
+        {
+          heroWords.map((w, i) => (
+            <>
+              <span class="rw" style="display:inline-block;">
+                {w.accent ? (
+                  <span data-i style="color:var(--cy);" set:html={w.text} />
+                ) : (
+                  <Fragment set:html={w.text} />
+                )}
+              </span>
+              {i < heroWords.length - 1 ? ' ' : ''}
+            </>
+          ))
+        }
+      </h1>
+      <div
+        class="g2"
+        style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:end;margin-top:1.8rem;"
+      >
+        <p
+          style="font-size:clamp(1.02rem,1.3vw,1.18rem);line-height:1.64;color:rgba(233,238,244,0.82);max-width:56ch;"
+        >
+          The business, the product, and the customer experience – I've led all three through the
+          scale-up, the acquisition, and the launch, and I help founders keep them aligned exactly
+          when scale is pulling them apart. One engagement, one senior partner in the room.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0.9rem;">
+          <a
+            data-mag
+            href="#start"
+            style="display:inline-flex;align-items:center;justify-content:space-between;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 1.6rem;font:600 0.94rem/1 'Hanken Grotesk';transition:transform .15s;"
+            >Book an intro call →</a
+          >
+          <a
+            href="#how"
+            style="font:500 0.92rem/1 'Hanken Grotesk';color:#fff;text-decoration:none;border-bottom:2px solid var(--cy);padding-bottom:3px;align-self:flex-start;"
+            >See how it works</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-BLEED PHOTO BAND -->
+  <figure
+    style="margin:0;position:relative;background:var(--ink);overflow:hidden;border-top:1px solid var(--ink);"
+  >
+    <img
+      src="/assets/megan-keynote.jpeg"
+      alt="Megan Eisen – on stage"
+      class="photo"
+      style="display:block;width:100%;height:clamp(320px,38vw,480px);object-fit:cover;object-position:50% 16%;"
+    />
+    <figcaption
+      class="lbl"
+      style="position:absolute;left:clamp(1.25rem,5vw,4rem);bottom:1.2rem;font-size:0.56rem;color:var(--cy);background:rgba(20,22,26,0.5);padding:0.5rem 0.85rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);"
+      >Megan Eisen · in the room</figcaption
+    >
+  </figure>
+
+  <!-- PROOF BAR (marquee) -->
+  <div
+    style="border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:1.5rem 0;background:var(--bd);"
+  >
+    <div
+      class="wr"
+      style="display:flex;align-items:center;gap:clamp(1.4rem,4vw,3rem);flex-wrap:nowrap;"
+    >
+      <span
+        class="lbl"
+        style="font-size:0.6rem;color:var(--mut);line-height:1.6;flex-shrink:0;"
+        >Two decades in guest/customer/user-first experiences<br />hospitality, travel &amp;
+        lifestyle</span
+      >
+      <div
+        class="marquee-mask"
+        style="flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);"
+      >
+        <div
+          class="marquee-track"
+          style="display:inline-flex;white-space:nowrap;will-change:transform;animation:marquee 26s linear infinite;"
+        >
+          <span style="font:600 0.92rem/1.8 'Hanken Grotesk';color:var(--ink);padding-right:clamp(1.6rem,4vw,3.2rem);"
+            >{proofNames}</span
+          >
+          <span style="font:600 0.92rem/1.8 'Hanken Grotesk';color:var(--ink);padding-right:clamp(1.6rem,4vw,3.2rem);"
+            >{proofNames}</span
+          >
+          <span
+            aria-hidden="true"
+            style="font:600 0.92rem/1.8 'Hanken Grotesk';color:var(--ink);padding-right:clamp(1.6rem,4vw,3.2rem);">{proofNames}</span
+          >
+          <span
+            aria-hidden="true"
+            style="font:600 0.92rem/1.8 'Hanken Grotesk';color:var(--ink);padding-right:clamp(1.6rem,4vw,3.2rem);">{proofNames}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <section
+    id="problem"
+    style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;scroll-margin-top:66px;"
+  >
+    <div class="wr">
+      <span
+        class="lbl"
+        style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"
+        ><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>The
+        problem</span
+      ><span
+        aria-hidden="true"
+        class="ser"
+        style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;"
+        >01</span
+      >
+      <h2
+        data-reveal
+        class="ser"
+        style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:24ch;"
+      >
+        Most companies don't come apart when things go wrong. They come apart <span
+          data-i
+          style="color:var(--ind);">when things go right.</span
+        >
+      </h2>
+      <p
+        style="font-size:clamp(1.05rem,1.4vw,1.24rem);line-height:1.6;color:#4C5560;max-width:64ch;margin-top:1.3rem;"
+      >
+        Early on, one or two people hold the whole thing together – the customer, the product, and
+        the business, aligned in a few heads. Then you raise, or scale, or get acquired, and those
+        become separate teams with separate goals. They drift. And it shows up everywhere before a
+        dashboard ever catches it.
+      </p>
+
+      <div class="sym" style="margin-top:2.6rem;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);">
+        {
+          SYMPTOMS.map((text, i) => (
+            <div style={symptomCellStyle(i)}>
+              <span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span style="font-size:1rem;line-height:1.55;">{text}</span>
+            </div>
+          ))
+        }
+      </div>
+      <p
+        class="ser"
+        style="margin-top:2.2rem;font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.35rem,2.4vw,1.9rem);line-height:1.32;max-width:34ch;color:var(--ink);"
+      >
+        The gap isn't inside any one team. It's in the space between them – exactly where the
+        experience you were loved for slips away.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHO & WHEN -->
+  <section
+    id="who"
+    style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;"
+  >
+    <div class="wr">
+      <span
+        class="lbl"
+        style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"
+        ><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>Who –
+        and when</span
+      ><span
+        aria-hidden="true"
+        class="ser"
+        style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;"
+        >02</span
+      >
+      <h2
+        data-reveal
+        class="ser"
+        style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:24ch;"
+      >
+        The companies I work with – and <span data-i style="color:var(--ind);"
+          >when I'm most useful to them.</span
+        >
+      </h2>
+
+      <div
+        class="g2"
+        style="display:grid;grid-template-columns:0.92fr 1.08fr;gap:clamp(1.8rem,3.5vw,3rem);margin-top:2rem;"
+      >
+        <div>
+          <div
+            class="lbl"
+            style="font-size:0.6rem;color:var(--mut);padding-bottom:0.9rem;margin-bottom:1.2rem;border-bottom:2px solid var(--ink);"
+          >
+            Who it's for
+          </div>
+          {
+            WHO_CARDS.map((c) => (
+              <div class="whocard" data-offset-parent style="position:relative;margin-bottom:1.1rem;">
+                <div
+                  data-offset-block
+                  style="position:absolute;right:-7px;top:-7px;width:38px;height:38px;background:var(--cy);"
+                />
+                <div style="position:relative;border:1px solid var(--ink);background:var(--pp);padding:1.3rem 1.4rem;">
+                  <div class="lbl" style="font-size:0.56rem;color:var(--ind);">
+                    {c.kicker}
+                  </div>
+                  <h3 class="ser" style="font-size:1.28rem;line-height:1.16;margin:0.55rem 0 0.5rem;">
+                    {c.title}
+                  </h3>
+                  <p style="font-size:0.93rem;line-height:1.55;color:#4C5560;">{c.body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div>
+          <div
+            class="lbl"
+            style="font-size:0.6rem;color:var(--ind);padding-bottom:0.9rem;border-bottom:2px solid var(--ink);"
+          >
+            Where I'm sharpest – the inflection points
+          </div>
+          {
+            INFLECTIONS.map((f, i) => (
+              <div
+                data-reveal
+                style={`display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;padding:1rem 0;${i < INFLECTIONS.length - 1 ? 'border-bottom:1px solid var(--line);' : ''}`}
+              >
+                <span class="ser" style="font-size:1.1rem;color:var(--ind);">{f.num}</span>
+                <div>
+                  <div class="ser" style="font-size:1.18rem;line-height:1.2;">{f.title}</div>
+                  <p
+                    style="font-size:0.92rem;line-height:1.5;color:#4C5560;margin-top:0.35rem;"
+                    set:html={f.body.replace(
+                      /<strong>/g,
+                      '<strong style="color:var(--ink);font-weight:600;">'
+                    )}
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div
+        data-reveal
+        class="g2"
+        style="margin-top:2rem;background:var(--ind);color:#fff;padding:1.4rem 1.7rem;display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;"
+      >
+        <span class="lbl" style="font-size:0.58rem;color:var(--cy);white-space:nowrap;"
+          >Who I work with directly</span
+        >
+        <p style="font-size:1rem;line-height:1.55;">
+          The founder, CEO, or the person who owns product and customer experience. <span
+            class="ser"
+            style="font-style:italic;font-family:'Newsreader',serif;color:var(--cy);"
+            >The inflection points are where I'm sharpest – though the work holds just as well in the
+            steady climb between them.</span
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW / THE OFFER (dark) -->
+  <section
+    id="how"
+    style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--pp);scroll-margin-top:66px;"
+  >
+    <div class="wr">
+      <span
+        class="lbl"
+        style="color:var(--cy);display:inline-flex;align-items:center;gap:0.7rem;"
+        ><span style="width:26px;height:1px;background:var(--cy);display:inline-block;"></span>How it
+        works</span
+      ><span
+        aria-hidden="true"
+        class="ser"
+        style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--cy);opacity:0.16;pointer-events:none;z-index:0;"
+        >03</span
+      >
+      <h2
+        data-reveal
+        class="ser"
+        style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:22ch;color:#fff;"
+      >
+        Proven executive judgment, <span data-i style="color:var(--cy);"
+          >priced on the value it creates.</span
+        >
+      </h2>
+      <p
+        style="font-size:clamp(1.02rem,1.35vw,1.18rem);line-height:1.62;color:rgba(233,238,244,0.8);max-width:66ch;margin-top:1.3rem;"
+      >
+        You get one person who speaks the language of the business, the customer, and the product –
+        so they stop talking past each other. A senior partner in the room from month one: concrete
+        work up front, then an ongoing partnership priced on judgment, not hours. Some months that's
+        judgment in your ear; some months it's hands-on, fixing real things in the org. Same rate
+        either way, for as long as it's working.
+      </p>
+
+      <div style="margin-top:clamp(2.2rem,4vw,3rem);display:flex;flex-direction:column;gap:0.9rem;">
+        <!-- Price panel (static, not animated) -->
+        <div
+          style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;padding:clamp(1.6rem,3vw,2.2rem) clamp(1.6rem,3vw,2.4rem);background:rgba(255,255,255,0.06);"
+        >
+          <div class="ser" style="font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:#fff;">
+            $18,000 <span
+              style="font-family:'Hanken Grotesk';font-weight:400;font-size:1.1rem;color:rgba(233,238,244,0.6);"
+              >/ month</span
+            >
+          </div>
+          <div
+            class="lbl"
+            style="font-size:0.62rem;color:var(--cy);text-align:right;max-width:26ch;line-height:1.6;"
+          >
+            Advisory in the ear or hands-on in the org – one rate, priced on judgment, not hours
+          </div>
+        </div>
+        <div class="offerbody" style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;">
+          <div
+            style="padding:clamp(1.6rem,2.8vw,2.2rem) clamp(1.6rem,3vw,2.4rem);background:rgba(255,255,255,0.06);"
+          >
+            <div class="lbl" style="font-size:0.58rem;color:var(--cy);">Month one – defined</div>
+            <h3 class="ser" style="font-size:1.5rem;line-height:1.14;margin:0.7rem 0 0.7rem;color:#fff;">
+              We start concrete
+            </h3>
+            <p style="font-size:0.98rem;line-height:1.58;color:rgba(233,238,244,0.82);">
+              I embed and read where the business, the product, and the customer experience have
+              pulled apart.
+            </p>
+            <ul style="list-style:none;margin-top:1rem;">
+              {
+                OFFER_MONTH_ONE.map((li) => (
+                  <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;">
+                    <span style="position:absolute;left:0;color:var(--cy);">→</span>
+                    {li}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div
+            style="padding:clamp(1.6rem,2.8vw,2.2rem) clamp(1.6rem,3vw,2.4rem);background:rgba(255,255,255,0.045);"
+          >
+            <div class="lbl" style="font-size:0.58rem;color:var(--cy);">After that – continuous</div>
+            <h3 class="ser" style="font-size:1.5rem;line-height:1.14;margin:0.7rem 0 0.7rem;color:#fff;">
+              We keep going
+            </h3>
+            <p style="font-size:0.98rem;line-height:1.58;color:rgba(233,238,244,0.82);">
+              Same rate, month to month. No renewal, no re-sell, no new statement of work – just the
+              partnership deepening as I operate alongside your team.
+            </p>
+            <ul style="list-style:none;margin-top:1rem;">
+              {
+                OFFER_AFTER.map((li) => (
+                  <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;">
+                    <span style="position:absolute;left:0;color:var(--cy);">→</span>
+                    {li}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+          <span
+            class="lbl"
+            style="font-size:0.58rem;color:rgba(233,238,244,0.85);background:rgba(255,255,255,0.06);padding:0.7rem 1rem;"
+            ><span style="color:var(--cy);">Billed</span> at the start of each month</span
+          >
+          <span
+            class="lbl"
+            style="font-size:0.58rem;color:rgba(233,238,244,0.85);background:rgba(255,255,255,0.06);padding:0.7rem 1rem;"
+            ><span style="color:var(--cy);">15 days'</span> notice to wind down</span
+          >
+          <span
+            class="lbl"
+            style="font-size:0.58rem;color:rgba(233,238,244,0.85);background:rgba(255,255,255,0.06);padding:0.7rem 1rem;"
+            ><span style="color:var(--cy);">A small</span> hand-picked book – limited availability</span
+          >
+        </div>
+      </div>
+
+      <!-- Getting started bar -->
+      <div
+        class="startbar"
+        style="margin-top:clamp(1.8rem,3.2vw,2.4rem);background:rgba(10,255,251,0.08);padding:clamp(1.3rem,2.4vw,1.7rem) clamp(1.4rem,3vw,2rem);display:grid;grid-template-columns:1fr auto;gap:1.2rem 2rem;align-items:center;"
+      >
+        <div>
+          <div class="lbl" style="font-size:0.6rem;color:var(--cy);margin-bottom:0.8rem;">
+            Getting started is simple
+          </div>
+          <div
+            style="display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;font:600 1rem/1.4 'Hanken Grotesk';color:#fff;"
+          >
+            <span>Send one email</span><span style="color:var(--cy);">→</span><span
+              >A 30-minute call</span
+            ><span style="color:var(--cy);">→</span><span>Start within the month</span>
+          </div>
+          <p
+            style="font-size:0.88rem;line-height:1.55;color:rgba(233,238,244,0.72);margin-top:0.8rem;max-width:54ch;"
+          >
+            No deck. No pitch. No statement of work. If it's a fit, we start – and you can cancel
+            with 15 days' notice, any time.
+          </p>
+        </div>
+        <a
+          data-mag
+          href="#start"
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:0.95rem 1.7rem;font:600 0.94rem/1 'Hanken Grotesk';white-space:nowrap;transition:transform .15s;"
+          >Book an intro call →</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section
+    id="get"
+    style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);scroll-margin-top:66px;"
+  >
+    <div class="wr">
+      <span
+        class="lbl"
+        style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"
+        ><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>What
+        you get</span
+      ><span
+        aria-hidden="true"
+        class="ser"
+        style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;"
+        >04</span
+      >
+      <h2
+        data-reveal
+        class="ser"
+        style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:26ch;"
+      >
+        Not a framework. Judgment, in the room, <span data-i style="color:var(--ind);"
+          >from someone who's done it.</span
+        >
+      </h2>
+      <div style="margin-top:2.4rem;border-top:1px solid var(--ink);">
+        {
+          DELIVERABLES.map((d) => (
+            <div style="display:grid;grid-template-columns:3rem 1fr;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;">
+              <span class="lbl" style="font-size:0.7rem;color:var(--ind);">{d.num}</span>
+              <div>
+                <div class="ser" style="font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.24;">
+                  {d.title}
+                </div>
+                <p style="font-size:1rem;line-height:1.6;color:#4C5560;margin-top:0.5rem;max-width:70ch;">
+                  {d.body}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY OPTIMO -->
+  <section
+    id="why"
+    style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;"
+  >
+    <div class="wr">
+      <span
+        class="lbl"
+        style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"
+        ><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>Why
+        Óptimo</span
+      ><span
+        aria-hidden="true"
+        class="ser"
+        style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;"
+        >05</span
+      >
+      <h2
+        data-reveal
+        class="ser"
+        style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:24ch;"
+      >
+        For twenty years, I've led the business, the product, and the experience – <span
+          data-i
+          style="color:var(--ind);">as one job.</span
+        >
+      </h2>
+      <div
+        class="g2"
+        style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(1.8rem,4vw,3.5rem);align-items:start;margin-top:2.2rem;"
+      >
+        <div>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1rem;max-width:52ch;">
+            Most executives are strong at one of the business, the product, and design, and can only
+            speak to the others. I've led all three – and I <strong
+              style="color:var(--ink);font-weight:600;">start with the business:</strong
+            > strategy, org design, working models, clear priorities, the budget that funds them, and
+            the communication that moves people.
+          </p>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1rem;max-width:52ch;">
+            As Chief Experience Officer I built the operating model, OKR system, and review cadence
+            that carried a founder-led company through its acquisition and integration into a Fortune
+            500. I've owned a <strong style="color:var(--ink);font-weight:600;">~$25M budget</strong>
+            and grown from a team of two to a <strong style="color:var(--ink);font-weight:600;"
+              >100-plus-person org across five continents.</strong
+            >
+          </p>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1rem;max-width:52ch;">
+            Product is delivery – shipped roadmaps, tech tradeoffs, AI-enabled bets, and scale. I
+            made the call to treat mobile as the platform rather than a companion, and built
+            authenticated identity from zero to nearly a million accounts – a company people read
+            became one they log into.
+          </p>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1.3rem;max-width:52ch;">
+            Design is the judgment underneath both – knowing what "good" looks like, and building
+            holistically so the solution preserves the experience instead of sacrificing it to ship.
+            Twenty years in guest-first companies makes protecting it instinct, not a competency I
+            bolted on.
+          </p>
+        </div>
+        <div>
+          <figure data-reveal data-offset-parent style="margin:0;position:relative;">
+            <div
+              data-offset-block
+              style="position:absolute;right:-4%;top:-5%;width:30%;height:30%;background:var(--cy);"
+            >
+            </div>
+            <img
+              src="/assets/megan-street.jpeg"
+              alt="Megan Eisen – New York City"
+              class="photo"
+              style="position:relative;width:100%;height:clamp(360px,44vw,560px);object-fit:cover;object-position:50% 18%;display:block;box-shadow:0 18px 44px rgba(0,0,0,0.16);"
+            />
+          </figure>
+          <div class="lbl" style="font-size:0.56rem;color:var(--ind);margin-top:1rem;">
+            Megan Eisen · Founder, Óptimo
+          </div>
+        </div>
+      </div>
+      <p
+        class="ser"
+        data-reveal
+        style="font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.3;color:var(--ink);max-width:62ch;margin-top:clamp(2.4rem,4.5vw,3.4rem);"
+      >
+        You're not paying for a framework. You're paying for someone who's run the business, shipped
+        the product, and kept the customer – and helps you hold all three together when it counts.
+      </p>
+      <p style="font-size:1rem;line-height:1.7;color:#39414C;max-width:64ch;margin-top:1.4rem;">
+        The full record – twenty years across the business, the customer, and the product, on five
+        continents → <a
+          href="/"
+          style="color:var(--ind);text-decoration:none;border-bottom:2px solid var(--ind);padding-bottom:2px;"
+          >More about Megan</a
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- START / CTA -->
+  <section
+    id="start"
+    style="padding:clamp(3.6rem,6vw,6rem) 0;border-top:1px solid var(--ink);background:var(--ind);color:#fff;text-align:center;scroll-margin-top:66px;"
+  >
+    <div class="wr">
+      <span class="lbl" style="color:var(--cy);">Start here</span>
+      <h2
+        data-reveal
+        class="ser"
+        style="font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.04;margin:1rem auto 0;max-width:20ch;"
+      >
+        Start with a <span data-i style="color:var(--cy);">conversation.</span>
+      </h2>
+      <p
+        style="font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.66;color:rgba(255,255,255,0.86);margin:1.3rem auto 0;max-width:52ch;"
+      >
+        Thirty minutes – no pitch, no deck. I want to understand your world and see whether I'm the
+        right person for it. If we're a fit, we start.
+      </p>
+      <a
+        data-mag
+        href={OPTIMO_INTRO_MAILTO}
+        style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 2rem;font:600 0.98rem/1 'Hanken Grotesk';margin-top:2.2rem;transition:transform .15s;"
+        >Book an intro call →</a
+      >
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer
+    class="wr"
+    style="padding:2.4rem clamp(1.25rem,5vw,4rem);display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;"
+  >
+    <div>
+      <span class="ser" style="font-size:1.4rem;">Óptimo</span>
+      <p style="font-size:0.82rem;color:var(--mut);margin-top:0.3rem;">A practice of Megan Eisen</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.6rem;">
+      <a href="/" style="font-size:0.82rem;color:#4C5560;text-decoration:none;">Megan Eisen</a>
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="noopener"
+        style="font-size:0.82rem;color:#4C5560;text-decoration:none;">LinkedIn</a
+      >
+      <a href={`mailto:${CONTACT_EMAIL}`} style="font-size:0.82rem;color:#4C5560;text-decoration:none;"
+        >Email</a
+      >
+      <span style="font-size:0.82rem;color:var(--mut);">© 2026</span>
+    </div>
+  </footer>
+</Base>
+
+<!-- Marquee: pause auto-scroll on hover -->
+<style>
+  .marquee-mask:hover .marquee-track {
+    animation-play-state: paused;
+  }
+</style>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--pp:#EFF2F6;--bd:#E4E9F0;--pp2:#E1E7EF;--ink:#14161A;--ind:#2422E8;--cy:#0AFFFB;--mut:#7B818B;--line:#D2D8E0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--pp);color:var(--ink);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  ::selection{background:var(--cy);color:var(--ink);}
+  .ser{font-family:'Gloock',serif;font-weight:400;letter-spacing:-0.008em;}
+  .ser i,.ser [data-i]{font-family:'Newsreader',serif;font-style:italic;font-weight:500;}
+  .lbl{font:600 0.7rem/1 'Hanken Grotesk';letter-spacing:0.18em;text-transform:uppercase;}
+  a{color:inherit;}
+  .wr{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,5vw,4rem);}
+  .clk{font-variant-numeric:tabular-nums;letter-spacing:0.02em;}
+  .nav a{position:relative;text-decoration:none;font:600 0.72rem/1 'Hanken Grotesk';letter-spacing:0.14em;text-transform:uppercase;color:var(--mut);padding-bottom:3px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+  .nav a:hover{color:var(--ink);}
+  .heroimg{width:100%;height:clamp(340px,42vw,500px);object-fit:cover;object-position:50% 20%;display:block;filter:grayscale(1) contrast(1.05);}
+  @keyframes pdot{0%{box-shadow:0 0 0 0 rgba(10,255,251,0.5);}70%{box-shadow:0 0 0 7px rgba(10,255,251,0);}100%{box-shadow:0 0 0 0 rgba(10,255,251,0);}}
+  @media(max-width:860px){ .herogrid{grid-template-columns:1fr!important;} .nav{display:none!important;} .heroimg{height:clamp(300px,60vw,420px);} .snapgrid{grid-template-columns:repeat(2,1fr)!important;} .expgrid{grid-template-columns:1fr!important;} }
+  .casecard:hover{ background:rgba(255,255,255,0.09); }
+  @keyframes camo{ from{opacity:0;} to{opacity:1;} }
+  @keyframes capanel{ from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+  .caseModal::-webkit-scrollbar{ width:10px; }
+  .caseModal::-webkit-scrollbar-thumb{ background:var(--line); }
+  @media(max-width:860px){ .casecard{grid-template-columns:1fr!important;gap:1rem!important;} .casegrid{grid-template-columns:1fr!important;} .forkgrid{grid-template-columns:1fr!important;} }
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#EFF2F6">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#EFF2F6"></rect>
+    <rect x="0" y="0" width="1200" height="96" fill="#E4E9F0"></rect>
+    <rect x="0" y="96" width="1200" height="2" fill="#14161A"></rect>
+    <text x="90" y="360" font-family="Gloock, serif" font-size="112" fill="#14161A">I hold the</text>
+    <text x="90" y="470" font-family="Newsreader, serif" font-style="italic" font-size="112" fill="#2422E8">business.</text>
+    <rect x="840" y="200" width="260" height="330" fill="#2422E8"></rect>
+    <rect x="1020" y="470" width="66" height="66" fill="#0AFFFB"></rect>
+  </svg>
+</template>
+
+<div id="me-root">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:100;background:rgba(239,242,246,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ink);">
+    <div class="wr" style="height:66px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;">
+      <a href="Megan Eisen.dc.html" style="display:flex;align-items:center;gap:0.55rem;text-decoration:none;">
+        <img src="assets/logo-megan.png" alt="Megan Eisen" style="height:23px;width:auto;" />
+        <span class="ser" style="font-size:1.12rem;">Megan Eisen</span>
+      </a>
+      <nav class="nav" style="display:flex;align-items:center;gap:1.6rem;">
+        <a class="spy" data-spy="work" href="#work">Work</a>
+        <a class="spy" data-spy="about" href="#about">About</a>
+        <a href="Óptimo.dc.html">Óptimo →</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:1.1rem;">
+        <a data-mag href="#contact" style="background:var(--ink);color:var(--pp);padding:0.58rem 1.1rem;font:600 0.78rem/1 'Hanken Grotesk';text-decoration:none;white-space:nowrap;transition:transform .15s;">Let's talk</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="padding:clamp(2.6rem,5vw,4.5rem) 0 clamp(2.2rem,4vw,3.4rem);">
+    <div class="wr herogrid" style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(2rem,5vw,4rem);align-items:center;">
+      <div>
+        <span class="lbl" style="color:var(--ind);">Founder • Óptimo – Exec • Product, Design, Business Ops</span>
+        <h1 data-recal data-kinetic class="ser" style="font-size:clamp(1.85rem,3.4vw,3.05rem);line-height:1.04;letter-spacing:-0.012em;margin-top:1.4rem;max-width:26ch;"><span class="rw" style="display:inline-block;">I</span> <span class="rw" style="display:inline-block;">hold</span> <span class="rw" style="display:inline-block;">the</span> <span class="rw" style="display:inline-block;">business,</span> <span class="rw" style="display:inline-block;">the</span> <span class="rw" style="display:inline-block;">product,</span> <span class="rw" style="display:inline-block;">and</span> <span class="rw" style="display:inline-block;">the</span> <span class="rw" style="display:inline-block;">customer</span> <span class="rw" style="display:inline-block;">experience</span> <span class="rw" style="display:inline-block;">together</span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--ind);">–&nbsp;from</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--ind);">founder-led</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--ind);">to</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--ind);">Fortune&nbsp;500.</span></span></h1>
+        <p style="font-size:clamp(1rem,1.25vw,1.14rem);line-height:1.62;color:#4C5560;max-width:54ch;margin-top:1.5rem;">Twenty years leading business, product, and experience across hospitality and travel – where the experience is the product. Most recently Chief Experience Officer, carrying <strong style="color:var(--ink);font-weight:600;">The Infatuation</strong> through its acquisition by <strong style="color:var(--ink);font-weight:600;">JPMorganChase</strong>. Now, through <strong style="color:var(--ink);font-weight:600;">Óptimo</strong>, I do it for founders and teams at their hardest moments of change.</p>
+        <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.9rem;">
+          <a data-mag href="#contact" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--ind);color:#fff;text-decoration:none;padding:0.92rem 1.7rem;font:600 0.92rem/1 'Hanken Grotesk';white-space:nowrap;transition:transform .15s;">Let's talk →</a>
+        </div>
+      </div>
+
+      <!-- HERO MEDIA: photo + live tracker -->
+      <div>
+        <figure style="margin:0;position:relative;">
+          <div data-offset-block style="position:absolute;right:-0.7rem;top:-0.7rem;width:26%;height:26%;background:var(--cy);z-index:1;"></div>
+          <div style="position:relative;background:var(--ind);overflow:hidden;">
+            <img data-par src="assets/megan-glasses.jpeg" alt="Megan Eisen" class="heroimg" style="position:relative;z-index:0;" />
+          </div>
+        </figure>
+        <div style="border:1px solid var(--ink);border-top:none;padding:0.85rem 1rem;background:var(--bd);">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span class="lbl" style="font-size:0.54rem;color:var(--ink);">Working globally</span>
+            <span style="display:flex;align-items:center;gap:0.4rem;"><span style="width:6px;height:6px;border-radius:50%;background:var(--cy);animation:pdot 2.2s ease-out infinite;"></span><span class="lbl" style="font-size:0.5rem;color:var(--ind);">Live</span></span>
+          </div>
+          <div style="margin-top:0.85rem;display:flex;flex-direction:column;gap:0.7rem;">
+            <sc-for list="{{ homeCity }}" as="c" hint-placeholder-count="1">
+              <div style="background:var(--ink);color:var(--pp);padding:0.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+                <div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span data-dot="{{ c.tz }}" data-home="true" style="width:9px;height:9px;border-radius:50%;background:var(--cy);flex-shrink:0;"></span>
+                    <span style="font:600 1rem/1.1 'Hanken Grotesk';color:#fff;">{{ c.name }}</span>
+                  </div>
+                  <div class="lbl" style="font-size:0.5rem;color:var(--cy);margin-top:0.45rem;">{{ c.tag }}</div>
+                </div>
+                <div data-clock="{{ c.tz }}" class="clk" style="font:600 clamp(1.7rem,2.4vw,2.1rem)/1 'Hanken Grotesk';color:#fff;">--:--</div>
+              </div>
+            </sc-for>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+              <sc-for list="{{ others }}" as="c" hint-placeholder-count="2">
+                <div style="border-left:1px solid var(--line);padding-left:0.7rem;">
+                  <div style="display:flex;align-items:center;gap:0.45rem;">
+                    <span data-dot="{{ c.tz }}" data-home="false" style="width:7px;height:7px;border-radius:50%;background:var(--line);flex-shrink:0;"></span>
+                    <span style="font:600 0.78rem/1.1 'Hanken Grotesk';">{{ c.name }}</span>
+                  </div>
+                  <div data-clock="{{ c.tz }}" class="clk" style="font:600 1.02rem/1 'Hanken Grotesk';color:var(--ink);margin-top:0.45rem;">--:--</div>
+                  <div class="lbl" style="font-size:0.48rem;color:var(--mut);margin-top:0.3rem;">{{ c.tag }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNAPSHOT -->
+  <section id="snapshot" style="padding:clamp(2.8rem,5vw,4.4rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;">
+    <div class="wr">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <span class="lbl" style="color:var(--ind);">Executive snapshot</span>
+        <span class="lbl" style="font-size:0.54rem;color:var(--mut);">As of 2026 · Working globally</span>
+      </div>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.08;margin:0.9rem 0 1.6rem;max-width:24ch;">Business, experience, and product leadership at <span data-i style="color:var(--ind);">company-defining moments.</span></h2>
+      <div style="border:1px solid var(--ink);background:var(--pp);box-shadow:0 16px 40px rgba(20,30,50,0.10);">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);" class="snapgrid">
+          <sc-for list="{{ snapshot }}" as="s" hint-placeholder-count="4">
+            <div data-reveal style="padding:1.5rem 1.4rem 1.7rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">
+              <div class="ser" data-count style="font-size:clamp(1.6rem,2.5vw,2.25rem);line-height:1;color:var(--ind);">{{ s.stat }}</div>
+              <p style="font-size:0.86rem;line-height:1.5;color:#4C5560;margin-top:0.7rem;">{{ s.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:clamp(0.8rem,2vw,1.4rem);flex-wrap:wrap;padding:1rem 1.4rem;border-top:1px solid var(--ink);">
+          <span class="lbl" style="font-size:0.56rem;color:var(--mut);">Built inside</span>
+          <span style="font:600 0.86rem/1.7 'Hanken Grotesk';color:var(--ink);">JPMorganChase · The Infatuation · Zagat · Avero · Four Seasons · Intuit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work" style="position:relative;overflow:hidden;padding:clamp(3.2rem,5.5vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--pp);scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--cy);">Selected work</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.08;margin:1.1rem 0 0;max-width:20ch;color:#fff;">Proof at the points of <span data-i style="color:var(--cy);">inflection.</span></h2>
+      <p style="font-size:1rem;line-height:1.66;color:rgba(233,238,244,0.78);max-width:64ch;margin-top:1.2rem;">The hardest moments in a company's life aren't the failures – they're the successes. Scaling past product-market fit. Being acquired. Launching. Consolidating. A leadership change. That's where the business, the product, and the customer experience pull apart – and where I do my sharpest work.</p>
+
+      <div style="margin-top:clamp(2.4rem,4vw,3.4rem);display:flex;gap:1.4rem;overflow-x:auto;padding-bottom:1.2rem;scroll-snap-type:x mandatory;">
+        <sc-for list="{{ cases }}" as="h" hint-placeholder-count="3">
+          <div data-reveal class="casecard" style="flex:0 0 auto;width:clamp(320px,82vw,460px);scroll-snap-align:start;padding:clamp(1.6rem,3vw,2.2rem);background:rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:1.2rem;align-items:stretch;transition:background .25s ease,transform .25s ease;">
+            <div>
+              <span class="lbl" style="font-size:0.72rem;color:var(--cy);">{{ h.label }}</span>
+              <div class="lbl" style="font-size:0.56rem;color:rgba(233,238,244,0.55);margin-top:0.6rem;">{{ h.discipline }}</div>
+              <div style="font-size:0.82rem;color:rgba(233,238,244,0.68);margin-top:1rem;line-height:1.55;">{{ h.tags }}</div>
+            </div>
+            <div>
+              <p class="ser" style="font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.3rem,2.1vw,1.8rem);line-height:1.24;color:#fff;max-width:36ch;">“{{ h.pain }}”</p>
+              <p style="font-size:0.98rem;line-height:1.64;color:rgba(233,238,244,0.8);margin-top:1.1rem;max-width:58ch;">{{ h.did }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:1.4rem 2.6rem;margin-top:1.5rem;">
+                <sc-for list="{{ h.proof }}" as="r" hint-placeholder-count="3">
+                  <div>
+                    <div class="ser" style="font-size:clamp(1.3rem,2vw,1.7rem);line-height:0.9;color:var(--cy);" data-count>{{ r.val }}</div>
+                    <p style="font-size:0.74rem;line-height:1.35;color:rgba(233,238,244,0.6);margin-top:0.4rem;max-width:18ch;">{{ r.label }}</p>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;margin-top:1.7rem;">
+                <sc-if value="{{ h.hasModal }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ h.open }}" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--cy);color:var(--ink);border:none;cursor:pointer;padding:0.72rem 1.3rem;font:600 0.82rem/1 'Hanken Grotesk';">View the work →</button>
+                </sc-if>
+                <a href="mailto:megan@meganeisen.com?subject=Request%20the%20full%20walkthrough" style="font:600 0.82rem/1 'Hanken Grotesk';color:var(--cy);text-decoration:none;border-bottom:1px solid rgba(10,255,251,0.45);padding-bottom:3px;">Request the full walkthrough →</a>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <p style="font-size:0.94rem;line-height:1.6;color:rgba(233,238,244,0.7);max-width:56ch;margin-top:clamp(1.8rem,3vw,2.4rem);">Full context, process, constraints, and outcomes on request.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" style="position:relative;overflow:hidden;padding:clamp(3.2rem,5vw,5rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;">
+    <div class="wr">
+      <div class="expgrid" style="display:grid;grid-template-columns:0.92fr 1.08fr;gap:clamp(2rem,5vw,4.5rem);align-items:start;">
+        <div>
+          <span class="lbl" style="color:var(--mut);">Experience</span>
+          <h2 class="ser" style="font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.08;margin-top:0.8rem;max-width:16ch;">Two decades, five continents, every stage of <span data-i>growth.</span></h2>
+          <p style="font-size:1rem;line-height:1.7;color:#4C5560;margin-top:1.1rem;max-width:48ch;">Started in Nebraska, Colorado, Hawaii, St. Croix. Navigated 15 countries before landing in Singapore, Germany, Miami. Now between New York City, Switzerland, and Mexico <span style="color:var(--ind);font-weight:600;">→ working globally.</span></p>
+          <p style="font-size:0.96rem;line-height:1.7;color:#565E68;margin-top:1rem;max-width:48ch;">The arc of my journey reads customer experience → design → product: all with business leadership and hospitality/travel at the core. A pattern that repeats itself: leading design, earning the product org, and being asked to step into company strategy and leadership. At every company, the job kept growing – I'd lead one thing, then get handed the next. I don't sit still well. Ask anyone I've worked with.</p>
+        </div>
+        <div>
+          <div class="lbl" style="font-size:0.6rem;color:var(--ind);padding-bottom:0.9rem;border-bottom:2px solid var(--ink);">Career timeline</div>
+          <ul style="list-style:none;">
+            <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+              <li style="padding:1.1rem 0;border-bottom:1px solid var(--line);">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;">
+                  <span style="font-size:1.02rem;line-height:1.3;font-weight:600;color:var(--ink);">{{ t.role }}</span>
+                  <span class="lbl" style="font-size:0.56rem;color:var(--mut);white-space:nowrap;">{{ t.date }}</span>
+                </div>
+                <span style="display:block;font-size:0.9rem;color:#4C5560;margin-top:0.3rem;">{{ t.org }}</span>
+              </li>
+            </sc-for>
+          </ul>
+          <p style="font-size:0.9rem;line-height:1.7;color:#565E68;margin-top:1.3rem;"><strong style="color:var(--ink);font-weight:600;">Before 2019</strong> – founding and operating roles plus product, customer-experience, and hospitality leadership: EveryBell, Cognita Schools, HRS Group, Four Seasons, and Intuit. <a href="mailto:megan@meganeisen.com?subject=Executive%20r%C3%A9sum%C3%A9%20request" style="color:var(--ind);text-decoration:none;border-bottom:1.5px solid var(--ind);">Request résumé →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO I AM · TABBED -->
+  <section id="about" style="position:relative;overflow:hidden;padding:clamp(3.2rem,5.5vw,5.5rem) 0;border-top:1px solid var(--ink);scroll-margin-top:66px;">
+    <div class="wr">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <span class="lbl" style="color:var(--mut);">The person you'd work with</span>
+        <div style="display:inline-flex;border:1px solid var(--ink);">
+          <button onClick="{{ setWork }}" style="{{ workBtnStyle }}">At work</button>
+          <button onClick="{{ setHuman }}" style="{{ humanBtnStyle }}">As a human</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(1.8rem,4vw,3.2rem);align-items:center;margin-top:1.6rem;" class="forkgrid">
+        <div>
+          <div style="display:{{ workDisp }};">
+            <h2 class="ser" style="font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.1;max-width:20ch;">Megan – at work <span data-i style="color:var(--ind);">anywhere in the world.</span></h2>
+            <p style="font-size:1.04rem;line-height:1.74;color:#39414C;max-width:50ch;margin-top:1.1rem;">I read a business by where it drags, not where it hurts. A customer-experience problem is usually an ownership problem. A drifting roadmap is usually a revenue problem. An AI ambition is usually a data-and-identity problem – most companies want AI features; far fewer have built the foundation AI actually runs on. My job is to find the layer creating the drag and rebuild what the business has outgrown – not by adding process, but by making the system visible enough that decisions move again.</p>
+            <p style="font-size:1.04rem;line-height:1.74;color:#39414C;max-width:50ch;margin-top:1rem;">I start with the business itself – strategy, org design, how decisions get made, and the budget that funds them. Then the experience: what the customer, user, or guest actually meets. Then the product and the craft that delivers it. Most executives own one of the three. I've led all three, and I hold them together exactly when scale is pulling them apart.</p>
+          </div>
+          <div style="display:{{ humanDisp }};">
+            <h2 class="ser" style="font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.1;max-width:22ch;">Megan – <span data-i style="color:var(--ind);">as a human.</span></h2>
+            <p style="font-size:1.04rem;line-height:1.74;color:#39414C;max-width:50ch;margin-top:1.1rem;">I've moved across the world with two suitcases, which is roughly how I work: light, fast, and useful anywhere within weeks. I design my life the way I design an operating model – deliberately, around what actually matters, with nothing carried that doesn't earn its place. Experiences over things. Ownership over titles. Time and location on my own terms.</p>
+            <p style="font-size:1.04rem;line-height:1.74;color:#39414C;max-width:50ch;margin-top:1rem;">I've explored 29 countries across five continents with my wife, and we are always mapping the next one. I love the wind in my hair, sunshine, fresh air, alpine cheese, exploring cultures different than mine. I'm inspired by the creativity of humans and being "Auntie" makes me happy. I'm into working with hands, growing and building are my happy place, plating nightly is my creativity. My Swiss-Mexican wife is my everything.</p>
+          </div>
+        </div>
+        <figure style="margin:0;position:relative;">
+          <div data-offset-block style="position:absolute;left:-4%;top:-5%;width:34%;height:34%;background:var(--cy);"></div>
+          <img src="assets/megan-cafe.jpeg" alt="Megan Eisen – at work" style="position:relative;width:100%;height:clamp(300px,32vw,440px);object-fit:cover;object-position:50% 20%;display:{{ workDisp }};box-shadow:0 18px 44px rgba(0,0,0,0.14);" />
+          <img src="assets/megan-studio.jpeg" alt="Megan Eisen – in the studio" style="position:relative;width:100%;height:clamp(300px,32vw,440px);object-fit:cover;object-position:50% 12%;display:{{ humanDisp }};box-shadow:0 18px 44px rgba(0,0,0,0.14);" />
+          <figcaption class="lbl" style="font-size:0.52rem;color:var(--mut);margin-top:0.6rem;display:{{ workDisp }};">Working globally – probably in New York City, Mexico City, or Zürich</figcaption>
+          <figcaption class="lbl" style="font-size:0.52rem;color:var(--mut);margin-top:0.6rem;display:{{ humanDisp }};">Enjoying life – exploring, creating, growing things</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WORK WITH ME -->
+  <section id="together" style="position:relative;overflow:hidden;padding:clamp(3.2rem,5.5vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--mut);">Work with me</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.7rem,3vw,2.7rem);line-height:1.08;margin:1rem 0 0;max-width:34ch;">However we work together, you get someone who's <span data-i style="color:var(--ind);">actually been in the seat</span> – hands-on through the moments that test a company: growth, an acquisition, a launch, a reset.</h2>
+      <p style="font-size:clamp(1.02rem,1.3vw,1.16rem);line-height:1.66;color:#39414C;max-width:62ch;margin-top:1.2rem;">Embed with your company, step into an executive seat, or sit on your board. Whatever the setup, the bar stays the same. You get someone who finds where the business, the product, and the customer have pulled apart, and holds them together exactly when scale is pulling them apart.</p>
+      <div data-reveal style="position:relative;background:var(--ink);color:#fff;margin-top:clamp(1.8rem,3vw,2.4rem);padding:clamp(2rem,3.4vw,3rem);overflow:hidden;">
+        <div data-offset-block style="position:absolute;right:0;top:0;width:120px;height:120px;background:var(--cy);"></div>
+        <span class="lbl" style="font-size:0.62rem;color:var(--cy);position:relative;">The practice · Founders</span>
+        <h3 class="ser" style="font-size:clamp(1.7rem,2.8vw,2.5rem);line-height:1.08;margin:0.9rem 0 0;max-width:20ch;position:relative;">Óptimo – for when you've <span data-i style="color:var(--cy);">outgrown how you run.</span></h3>
+        <p style="font-size:1.06rem;line-height:1.66;color:rgba(255,255,255,0.92);max-width:58ch;margin-top:1.1rem;position:relative;">I embed with a founder from month one: I find where the business, the product, and the customer experience have pulled apart, and I rebuild the operating model so decisions move, ownership is clear, and the company stops depending on the founder as its operating system.</p>
+        <a data-mag href="Óptimo.dc.html" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:0.92rem 1.7rem;font:600 0.92rem/1 'Hanken Grotesk';margin-top:1.6rem;position:relative;transition:transform .15s;">See Óptimo →</a>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.8rem;position:relative;">
+          <span class="lbl" style="font-size:0.56rem;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.12);padding:0.55rem 0.85rem;">One engagement</span>
+          <span class="lbl" style="font-size:0.56rem;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.12);padding:0.55rem 0.85rem;">One senior partner in the room</span>
+          <span class="lbl" style="font-size:0.56rem;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.12);padding:0.55rem 0.85rem;">Where the experience is the product</span>
+        </div>
+      </div>
+      <p style="font-size:0.98rem;line-height:1.62;color:#4C5560;margin-top:1.6rem;max-width:72ch;"><strong style="color:var(--ink);font-weight:600;">Also open to select executive, fractional, and board roles</strong> – Chief Experience, Product, Design, or Operating Officer, VP, and senior operating seats, most useful on operating model, strategy, resourcing, at moments of growth, integration, reset, or transition.</p>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;color:var(--ind);text-decoration:none;border-bottom:2px solid var(--ind);padding-bottom:2px;font:600 0.95rem/1 'Hanken Grotesk';">Let's talk →</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="position:relative;overflow:hidden;padding:clamp(3.2rem,5.5vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--ind);color:#fff;scroll-margin-top:66px;">
+    <div class="wr">
+      <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(2rem,4.5vw,4rem);align-items:start;" class="forkgrid">
+        <div>
+          <span class="lbl" style="color:var(--cy);">Contact</span>
+          <h2 class="ser" style="font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.02;margin:1rem 0 1.3rem;">Let's have a <span data-i style="color:var(--cy);">real</span> conversation.</h2>
+          <p style="font-size:1.05rem;line-height:1.7;color:rgba(255,255,255,0.85);max-width:44ch;">For executive, advisory, board, or fractional work, for Óptimo, or for speaking – reach out directly. No deck, no pitch. Just the work. I read every message.</p>
+          <a data-mag href="mailto:megan@meganeisen.com" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 1.9rem;font:600 0.96rem/1 'Hanken Grotesk';margin-top:1.8rem;transition:transform .15s;">megan@meganeisen.com →</a>
+          <p class="lbl" style="font-size:0.58rem;color:rgba(255,255,255,0.55);margin:2rem 0 0.6rem;">Find me in</p>
+          <p style="font-size:0.94rem;line-height:1.9;color:rgba(255,255,255,0.85);max-width:40ch;">New York City<br />Zurich / Zug, Switzerland<br />Mexico City / Cabo, Mexico</p>
+          <a href="https://instagram.com/meg_n_reed" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.9rem;font:600 0.9rem/1 'Hanken Grotesk';color:var(--cy);text-decoration:none;border-bottom:2px solid var(--cy);padding-bottom:3px;">See where I am →</a>
+        </div>
+        <form action="mailto:megan@meganeisen.com" method="post" enctype="text/plain" style="display:flex;flex-direction:column;gap:1.3rem;background:rgba(255,255,255,0.07);padding:clamp(1.6rem,3vw,2.4rem);">
+          <label style="display:flex;flex-direction:column;gap:0.45rem;">
+            <span class="lbl" style="font-size:0.56rem;color:rgba(255,255,255,0.6);">Your name</span>
+            <input type="text" name="Name" required style="background:rgba(255,255,255,0.1);border:none;padding:0.7rem 0.9rem;font:400 1rem 'Hanken Grotesk';color:#fff;outline:none;" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:0.45rem;">
+            <span class="lbl" style="font-size:0.56rem;color:rgba(255,255,255,0.6);">Your email</span>
+            <input type="email" name="Email" required style="background:rgba(255,255,255,0.1);border:none;padding:0.7rem 0.9rem;font:400 1rem 'Hanken Grotesk';color:#fff;outline:none;" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:0.45rem;">
+            <span class="lbl" style="font-size:0.56rem;color:rgba(255,255,255,0.6);">What's on your mind</span>
+            <textarea name="Message" rows="3" style="background:rgba(255,255,255,0.1);border:none;padding:0.7rem 0.9rem;font:400 1rem/1.5 'Hanken Grotesk';color:#fff;outline:none;resize:vertical;"></textarea>
+          </label>
+          <button data-mag type="submit" style="align-self:flex-start;background:var(--cy);color:var(--ink);border:none;cursor:pointer;padding:0.9rem 1.8rem;font:600 0.94rem/1 'Hanken Grotesk';transition:transform .15s;">Send it →</button>
+        </form>
+      </div>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2.8rem;padding-top:1.4rem;">
+        <span class="lbl" style="font-size:0.58rem;color:rgba(255,255,255,0.6);">© 2026 Megan Eisen</span>
+        <div style="display:flex;gap:1.5rem;"><a href="Óptimo.dc.html" class="lbl" style="font-size:0.58rem;color:rgba(255,255,255,0.75);text-decoration:none;">Óptimo</a><a href="https://linkedin.com/in/megan-eisen" target="_blank" rel="noopener" class="lbl" style="font-size:0.58rem;color:rgba(255,255,255,0.75);text-decoration:none;">LinkedIn</a><a href="mailto:megan@meganeisen.com" class="lbl" style="font-size:0.58rem;color:rgba(255,255,255,0.75);text-decoration:none;">Email</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY AT SCALE – WALKTHROUGH MODAL -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:1000;background:rgba(10,12,14,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:camo .25s ease;display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:clamp(0.6rem,3vw,2.6rem);">
+      <div class="caseModal" onClick="{{ stop }}" style="animation:capanel .38s cubic-bezier(.2,.85,.25,1);background:var(--pp);color:var(--ink);width:min(940px,100%);max-width:940px;box-shadow:0 40px 120px rgba(0,0,0,0.45);position:relative;">
+        <div style="position:sticky;top:0;z-index:2;background:var(--ink);color:var(--pp);padding:clamp(1.6rem,3.2vw,2.6rem) clamp(1.4rem,3.2vw,2.8rem);">
+          <button onClick="{{ closeModal }}" aria-label="Close" style="position:absolute;top:clamp(1rem,2vw,1.5rem);right:clamp(1rem,2vw,1.5rem);width:40px;height:40px;border:1px solid rgba(255,255,255,0.35);background:transparent;color:#fff;cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s ease;" style-hover="background:rgba(255,255,255,0.15)">✕</button>
+          <div style="display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;">
+            <span class="lbl" style="font-size:0.64rem;color:var(--cy);">Quality at Scale</span>
+            <span class="lbl" style="font-size:0.56rem;color:rgba(233,238,244,0.6);">Design &amp; experience</span>
+          </div>
+          <h2 class="ser" style="font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.08;margin:1rem 0 0;max-width:26ch;color:#fff;">Relaunching iOS and Android without letting the bar drop.</h2>
+          <div class="lbl" style="font-size:0.56rem;color:rgba(233,238,244,0.6);margin-top:1rem;">Relaunch · New GTM · Scaling past PMF</div>
+        </div>
+
+        <div style="padding:clamp(1.6rem,3.4vw,3rem) clamp(1.4rem,3.4vw,2.8rem) clamp(2rem,4vw,3.4rem);">
+          <div style="display:grid;grid-template-columns:8rem 1fr;gap:clamp(1rem,2.4vw,2rem);align-items:start;" class="casegrid">
+            <span class="lbl" style="font-size:0.6rem;color:var(--mut);padding-top:0.35rem;">The pain</span>
+            <p class="ser" style="font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.15rem,1.9vw,1.5rem);line-height:1.36;color:var(--ink);max-width:44ch;">“Scaling is quietly costing you the quality your customers loved. The roadmap optimizes the demo – and loses the person it was built for.”</p>
+          </div>
+          <hr style="border:none;border-top:1px solid var(--line);margin:clamp(1.6rem,3vw,2.4rem) 0;" />
+
+          <div style="display:grid;grid-template-columns:8rem 1fr;gap:clamp(1rem,2.4vw,2rem);align-items:start;" class="casegrid">
+            <span class="lbl" style="font-size:0.6rem;color:var(--mut);padding-top:0.35rem;">What I did</span>
+            <div style="display:flex;flex-direction:column;gap:1.1rem;max-width:62ch;">
+              <sc-for list="{{ qasSteps }}" as="p" hint-placeholder-count="4">
+                <div style="display:grid;grid-template-columns:2.4rem 1fr;gap:0.9rem;align-items:start;">
+                  <span class="ser" style="font-size:1.05rem;color:var(--ind);line-height:1.6;">{{ p.num }}</span>
+                  <p style="font-size:1rem;line-height:1.66;color:#363C46;">{{ p.text }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <hr style="border:none;border-top:1px solid var(--line);margin:clamp(1.6rem,3vw,2.4rem) 0;" />
+
+          <div style="display:grid;grid-template-columns:8rem 1fr;gap:clamp(1rem,2.4vw,2rem);align-items:start;" class="casegrid">
+            <span class="lbl" style="font-size:0.6rem;color:var(--mut);padding-top:0.35rem;">The proof</span>
+            <div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;border-top:2px solid var(--ink);">
+                <sc-for list="{{ qasOutcomes }}" as="o" hint-placeholder-count="4">
+                  <div style="padding:1.2rem 1.2rem 1.4rem 0;">
+                    <div class="ser" style="font-size:clamp(1.7rem,2.6vw,2.3rem);line-height:0.95;color:var(--ind);">{{ o.val }}</div>
+                    <p style="font-size:0.84rem;line-height:1.45;color:#4C5560;margin-top:0.45rem;max-width:20ch;">{{ o.label }}</p>
+                  </div>
+                </sc-for>
+              </div>
+              <p class="ser" style="font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.2rem,1.9vw,1.55rem);line-height:1.3;color:var(--ind);margin-top:1.8rem;max-width:42ch;">Quality that scaled with the product, instead of being spent to ship it.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:clamp(1.8rem,3.4vw,2.6rem);">
+            <span class="lbl" style="font-size:0.6rem;color:var(--mut);">The visual proof</span>
+            <p style="font-size:0.9rem;line-height:1.55;color:#4C5560;max-width:56ch;margin:0.5rem 0 0.9rem;">Real screens, the clickable prototype, and the design system – the walkthrough goes deeper.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.8rem,2vw,1.4rem);" class="casegrid">
+              <sc-for list="{{ qasGallery }}" as="g" hint-placeholder-count="4">
+                <figure style="margin:0;">
+                  <image-slot id="{{ g.slot }}" shape="rect" placeholder="{{ g.ph }}" style="display:block;width:100%;height:clamp(220px,26vw,300px);border:1px solid var(--line);background:var(--bd);"></image-slot>
+                  <figcaption class="lbl" style="font-size:0.52rem;color:var(--mut);margin-top:0.5rem;">{{ g.ph }}</figcaption>
+                </figure>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:clamp(1.8rem,3vw,2.4rem);padding-top:1.4rem;border-top:1px solid var(--line);">
+            <button onClick="{{ closeModal }}" style="background:transparent;border:1px solid var(--ink);color:var(--ink);cursor:pointer;padding:0.8rem 1.4rem;font:600 0.85rem/1 'Hanken Grotesk';">← Back to work</button>
+            <a href="mailto:megan@meganeisen.com?subject=Quality%20at%20Scale%20walkthrough" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--ind);color:#fff;text-decoration:none;padding:0.82rem 1.5rem;font:600 0.88rem/1 'Hanken Grotesk';">Request the full walkthrough →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;statusLabel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Working globally&quot;,&quot;Taking founders&quot;,&quot;Open to select work&quot;],&quot;default&quot;:&quot;Working globally&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Nav&quot;}}">
+class Component extends DCLogic {
+  state = { modalOpen:false, tab:'work' };
+
+  get CITIES(){ return [
+    { name:'New York City', tz:'America/New_York', tag:'Here now', home:true },
+    { name:'Zürich', tz:'Europe/Zurich', tag:'47.37°N', home:false },
+    { name:'Mexico', tz:'America/Mexico_City', tag:'19.43°N', home:false },
+  ]; }
+
+  get SNAPSHOT(){ return [
+    { stat:'20 yrs', desc:'Across the business, the customer, and the product – where the experience is the product.' },
+    { stat:'100+', desc:'Org led across five continents, with VPs and senior directors reporting to me.' },
+    { stat:'~$25M', desc:'Budget owned – resources optimized, spend focused.' },
+    { stat:'0 → ~1M', desc:'Engaged users, built from zero on the platforms I directed, designed, delivered.' },
+  ]; }
+
+  get CASES(){ return [
+    { label:'Building Bridges', discipline:'Business & operating',
+      tags:'Acquisition · Integration · Leadership transition',
+      pain:'You\u2019re scaling or integrating, and no single leader can hold the business, the product, and the technical org at once – so decisions stall and someone referees instead of building.',
+      did:'I came in leading a team of two and grew it to eighteen across five countries – then was handed the product org itself: 100-plus people and five VPs and directors, spanning product, design, design engineering, and AI. Through the post-acquisition integration I stood in as technology leadership, set the company\u2019s OKRs and operating cadence, and built the category strategy that made a new consumer vertical a lead driver of card-business growth.',
+      proof:[ { val:'2 → 100+', label:'From leading a team of 2 to running the product org.' }, { val:'~$25M', label:'Budget owned.' }, { val:'60M', label:'Ecosystem my category strategy drove card growth across.' } ],
+      hasModal:false },
+    { label:'Connecting Ecosystems', discipline:'Product & platform',
+      tags:'Strategy · Platform build · Integration',
+      pain:'You\u2019ve got the audience and the ambition – but your content, bookings, benefits, and customer identity all live in separate places. Nothing compounds, and the spend you\u2019re betting on never shows up.',
+      did:'A Fortune 500 was betting on dining to drive a step-change in card spend, but the pieces were disconnected. I owned the strategy and directed the build – a full replatform that pulled content, reservations, and a previously separate benefits system into one integrated hub, with authentication and account-linking built from zero underneath. On that foundation I shipped personalization and designed an AI concierge that became the product strategy going forward.',
+      proof:[ { val:'0 → ~1M', label:'Authenticated accounts, built from zero.' }, { val:'4 → 1', label:'Content, reservations, and benefits unified into one hub.' }, { val:'AI-first', label:'Personalization shipped; the AI concept became the go-forward strategy.' } ],
+      hasModal:false },
+    { label:'Quality at Scale', discipline:'Design & experience',
+      tags:'Relaunch · New GTM · Scaling past PMF',
+      pain:'Scaling is quietly costing you the quality your customers loved. The roadmap optimizes the demo – and loses the person it was built for.',
+      did:'A full iOS and Android relaunch, with a new go-to-market – without letting the bar drop as it scaled. A design system, end-to-end flows, and a relentless customer standard built into the process, not bolted on after. Downloads and new users climbed, and 30-day retention broadly held as the base grew.',
+      proof:[ { val:'+150%', label:'Monthly downloads.' }, { val:'+30%', label:'Sign-up rate.' }, { val:'+15–20%', label:'Monthly active users, each month.' } ],
+      hasModal:false },
+  ]; }
+
+  get QAS_STEPS(){ return [
+    'A full iOS and Android relaunch, paired with a new go-to-market – treated as one motion, not a design pass and a marketing pass.',
+    'A design system and end-to-end flows built so the quality bar lived in the system, not in any one reviewer.',
+    'A relentless customer standard built into the process – the person the product was for stayed in the room as it scaled.',
+    'Delivery instrumented so downloads, sign-ups, and retention were watched together, never traded off against each other.',
+  ]; }
+  get QAS_OUTCOMES(){ return [
+    { val:'+150%', label:'Monthly downloads.' },
+    { val:'+30%', label:'Sign-up rate.' },
+    { val:'+15–20%', label:'Monthly active users, each month.' },
+    { val:'Held', label:'30-day retention, broadly, as the base scaled.' },
+  ]; }
+  get QAS_GALLERY(){ return [
+    { slot:'qas-ios', ph:'iOS relaunch – key screens' },
+    { slot:'qas-android', ph:'Android relaunch – key screens' },
+    { slot:'qas-proto', ph:'Clickable prototype – core flow' },
+    { slot:'qas-ds', ph:'Design system – components & tokens' },
+  ]; }
+
+  get TIMELINE(){ return [
+    { date:'2026 – Present', role:'Founder', org:'Óptimo' },
+    { date:'2024 – 2026', role:'Executive Director, Head of Dining Product & Design', org:'JPMorganChase' },
+    { date:'2022 – 2024', role:'Chief Experience Officer', org:'The Infatuation & Zagat' },
+    { date:'2021 – 2022', role:'Vice President, Product & Design', org:'The Infatuation' },
+    { date:'2019 – 2021', role:'Head of Product Design & Ops', org:'Avero' },
+  ]; }
+
+  get TAGS(){ return ['29 countries · 5 continents','Food-focused traveler','Two suitcases, useful anywhere','Maker by hand','Chases sunshine','Healthy competition – pickleball?','Proud auntie']; }
+
+  componentDidMount(){ this._setup(); this._clocks();
+    this.__esc=(e)=>{ if(e.key==='Escape'&&this.state.modalOpen) this.setState({modalOpen:false}); };
+    document.addEventListener('keydown',this.__esc);
+  }
+  componentDidUpdate(){ this._setup(); document.body.style.overflow=this.state.modalOpen?'hidden':''; }
+  componentWillUnmount(){ if(this.__ci) clearInterval(this.__ci); document.removeEventListener('keydown',this.__esc); document.body.style.overflow=''; }
+  _setup(){ requestAnimationFrame(()=>{ this._recal(); this._reveal(); this._mag(); this._flaps(); this._spy(); this._parallax(); this._kinetic(); this._offsetCards(); this._chapterRail(); this._spotlight(); this._scramble(); this._ring(); this._numDrift(); }); }
+
+  _clocks(){
+    if(this.__ck) return; this.__ck=true;
+    const time=(tz)=>{ try{ return new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date()); }catch(e){ return '--:--'; } };
+    const hour=(tz)=>{ try{ return parseInt(new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',hour12:false}).format(new Date()),10)||0; }catch(e){ return 12; } };
+    const tick=()=>{
+      document.querySelectorAll('[data-clock]').forEach(el=>{ el.textContent=time(el.getAttribute('data-clock')); });
+      document.querySelectorAll('[data-dot]').forEach(d=>{ const h=hour(d.getAttribute('data-dot')); const awake=h>=7&&h<23; const home=d.getAttribute('data-home')==='true';
+        if(home){ d.style.background='var(--cy)'; d.style.animation='pdot 2.2s ease-out infinite'; }
+        else { d.style.background=awake?'var(--cy)':'#B9C0C9'; d.style.animation='none'; d.style.opacity=awake?'1':'0.85'; }
+      });
+    };
+    tick(); this.__ci=setInterval(tick,1000);
+  }
+  _recal(){
+    document.querySelectorAll('[data-recal]').forEach(h=>{ if(h.__rc) return; h.__rc=true;
+      h.querySelectorAll('.rw').forEach((w,i)=>{ w.style.opacity='0';
+        try{ const an=w.animate([{opacity:0,transform:'translateY(-0.4em)',filter:'blur(5px)'},{opacity:1,transform:'translateY(0)',filter:'blur(0)'}],{duration:820,delay:70+i*50,easing:'cubic-bezier(.22,.92,.26,1)'}); an.onfinish=()=>{ w.style.opacity='1'; w.style.transform='none'; w.style.filter='none'; }; }catch(e){ w.style.opacity='1'; } });
+      setTimeout(()=>{ h.querySelectorAll('.rw').forEach(w=>{ w.style.opacity='1'; w.style.transform='none'; }); },2200);
+    });
+  }
+  _reveal(){
+    const _p=(el)=>{ el.style.opacity='1'; el.style.transform='none'; }; if(!this._io) this._io=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ _p(en.target); this._io.unobserve(en.target); } }); },{ threshold:0.05, rootMargin:'0px 0px -4% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.__r) return; el.__r=true; const r=el.getBoundingClientRect(); if(r.top<(window.innerHeight||800)*0.97 && r.bottom>0){ _p(el); return; } el.style.opacity='0'; el.style.transform='translateY(18px)'; el.style.transition='opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)'; this._io.observe(el); setTimeout(()=>_p(el),1100); });
+  }
+  _mag(){
+    document.querySelectorAll('[data-mag]').forEach(el=>{ if(el.__m) return; el.__m=true; el.style.willChange='transform';
+      el.addEventListener('mousemove',(e)=>{ const r=el.getBoundingClientRect(); el.style.transition='transform .08s linear'; el.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*0.18}px,${(e.clientY-(r.top+r.height/2))*0.3}px)`; });
+      el.addEventListener('mouseleave',()=>{ el.style.transition='transform .4s cubic-bezier(.2,.9,.2,1)'; el.style.transform='translate(0,0)'; });
+    });
+  }
+  _flaps(){
+    const els=[...document.querySelectorAll('[data-flap]')]; if(!els.length||this.__f) return; this.__f=true;
+    els.forEach(el=>{ el.style.opacity='0'; el.style.transform='translateY(10px)'; el.style.transition='opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1)'; });
+    const io=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ const el=en.target; const i=els.indexOf(el); setTimeout(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)'; }, i*50); io.unobserve(el); } }); },{ threshold:0.2 });
+    els.forEach(el=>{ io.observe(el); el.addEventListener('mouseenter',()=>{ el.style.transform='translateY(-3px)'; el.style.background='var(--ink)'; el.style.color='#fff'; }); el.addEventListener('mouseleave',()=>{ el.style.transform='translateY(0)'; el.style.background='transparent'; el.style.color='var(--ink)'; }); });
+  }
+  _spy(){
+    if(this.__spy) return; this.__spy=true;
+    const links=[...document.querySelectorAll('.nav .spy')]; if(!links.length) return;
+    const set=(id)=>{ links.forEach(a=>{ const on=a.getAttribute('data-spy')===id; a.style.color=on?'var(--ink)':'var(--mut)'; a.style.borderBottomColor=on?'var(--ind)':'transparent'; }); };
+    const secs=links.map(a=>document.getElementById(a.getAttribute('data-spy'))).filter(Boolean);
+    const io=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting) set(en.target.id); }); },{ rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    secs.forEach(s=>io.observe(s));
+  }
+  _parallax(){
+    if(this.__px) return; this.__px=true; const img=document.querySelector('[data-par]'); if(!img) return;
+    const onScroll=()=>{ const r=img.getBoundingClientRect(); const off=(r.top-(window.innerHeight/2))*-0.03; img.style.transform=`translateY(${off}px)`; };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+
+  _kinetic(){ document.querySelectorAll('[data-kinetic]').forEach(box=>{if(box.__k)return;box.__k=true;const ws=[...box.querySelectorAll('.rw')];ws.forEach(w=>{w.style.transition='transform .35s cubic-bezier(.2,.8,.2,1)';w.style.willChange='transform';});box.addEventListener('pointermove',(e)=>{ws.forEach(w=>{const r=w.getBoundingClientRect();const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);const dist=Math.hypot(dx,dy)||1;const f=Math.max(0,1-dist/440)*13;w.style.transform='translate('+((dx/dist)*f)+'px,'+((dy/dist)*f)+'px)';});});box.addEventListener('pointerleave',()=>{ws.forEach(w=>{w.style.transform='none';});});}); }
+  _offsetCards(){ document.querySelectorAll('[data-offset-block]').forEach(b=>{if(b.__oc)return;b.__oc=true;const c=b.parentElement;if(!c)return;b.style.transition='transform .45s cubic-bezier(.2,.85,.25,1)';c.style.cursor='pointer';c.addEventListener('mouseenter',()=>{b.style.transform='translate(10px,-10px)';});c.addEventListener('mouseleave',()=>{b.style.transform='translate(0,0)';});}); }
+  _chapterRail(){ if(this.__cr)return; this.__cr=true; if(window.innerWidth<980)return; const secs=[...document.querySelectorAll('section[id]')].filter(s=>s.id&&s.id!=='top'); if(secs.length<2)return; const rail=document.createElement('div'); rail.style.cssText='position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:300;display:flex;flex-direction:column;gap:11px;align-items:flex-end;'; secs.forEach(s=>{ const a=document.createElement('a'); a.href='#'+s.id; a.style.cssText='display:flex;align-items:center;gap:9px;text-decoration:none;'; a.innerHTML='<span class="rlab" style="font:600 0.5rem/1 Hanken Grotesk;letter-spacing:0.16em;text-transform:uppercase;color:#7B818B;opacity:0;transform:translateX(4px);transition:opacity .2s,transform .2s;white-space:nowrap;">'+s.id+'</span><span class="rdot" style="width:8px;height:8px;background:#B9C0C9;transition:background .25s,transform .25s;"></span>'; a.addEventListener('mouseenter',()=>{const l=a.querySelector('.rlab');l.style.opacity='1';l.style.transform='translateX(0)';}); a.addEventListener('mouseleave',()=>{const l=a.querySelector('.rlab');l.style.opacity='0';l.style.transform='translateX(4px)';}); rail.appendChild(a); }); document.body.appendChild(rail); const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.id; rail.querySelectorAll('a').forEach(a=>{const on=a.getAttribute('href')==='#'+id; const d=a.querySelector('.rdot'); d.style.background=on?'#2422E8':'#B9C0C9'; d.style.transform=on?'scale(1.6)':'scale(1)';});}});},{rootMargin:'-45% 0px -50% 0px'}); secs.forEach(s=>io.observe(s)); }
+
+
+  _spotlight(){ document.querySelectorAll('[data-spot]').forEach(el=>{if(el.__sp)return;el.__sp=true;el.style.position='relative';el.style.overflow='hidden';const wr=el.querySelector('.wr');if(wr){wr.style.position='relative';wr.style.zIndex='1';}const gg=document.createElement('div');gg.style.cssText='position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:0;';el.insertBefore(gg,el.firstChild);el.addEventListener('mousemove',(e)=>{const r=el.getBoundingClientRect();gg.style.background='radial-gradient(480px circle at '+(e.clientX-r.left)+'px '+(e.clientY-r.top)+'px, rgba(10,255,251,0.32), transparent 58%)';gg.style.opacity='1';});el.addEventListener('mouseleave',()=>{gg.style.opacity='0';});}); }
+  _scramble(){ if(this.__sc) return; this.__sc=true; const g='ABCDEFGHKMNPRSTVXZ0123456789$%'; const SK=new Set([' ','.',',','-',String.fromCharCode(160),String.fromCharCode(8594)]); const run=(el)=>{const final=(el.getAttribute('data-target')||el.textContent).trim();const dur=760;const st=performance.now();const step=(now)=>{const p=Math.min(1,(now-st)/dur);const rev=p*final.length;let o='';for(let i=0;i<final.length;i++){const c=final[i];if(SK.has(c)){o+=c;continue;}if(i<rev-0.4)o+=c;else o+=g[Math.floor(Math.random()*g.length)];}el.textContent=o;if(p<1)requestAnimationFrame(step);else el.textContent=final;};requestAnimationFrame(step);}; const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:0.4}); document.querySelectorAll('[data-count]').forEach(el=>{if(!el.getAttribute('data-target'))el.setAttribute('data-target',el.textContent.trim());io.observe(el);}); }
+
+
+  _ring(){ if(this.__rg) return; this.__rg=true; const fine=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches; if(!fine||document.getElementById('fxring')) return; const ring=document.createElement('div'); ring.id='fxring'; ring.style.cssText='position:fixed;left:0;top:0;width:30px;height:30px;border:1.5px solid #2422E8;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);opacity:0;transition:width .28s cubic-bezier(.2,.8,.2,1),height .28s cubic-bezier(.2,.8,.2,1),border-color .28s ease,background-color .28s ease,opacity .3s ease;'; document.body.appendChild(ring); let tx=innerWidth/2,ty=innerHeight/2,rx=tx,ry=ty,started=false; const lerp=(a,b,n)=>a+(b-a)*n; addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;if(!started){started=true;rx=tx;ry=ty;ring.style.opacity='1';}}); addEventListener('mouseout',e=>{if(!e.relatedTarget)ring.style.opacity='0';}); const hov='a,button,[data-mag],input,textarea'; document.addEventListener('mouseover',e=>{const t=e.target.closest&&e.target.closest(hov);if(t){ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='#0AFFFB';ring.style.backgroundColor='rgba(10,255,251,0.10)';}}); document.addEventListener('mouseout',e=>{const t=e.target.closest&&e.target.closest(hov);if(t){ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='#2422E8';ring.style.backgroundColor='transparent';}}); const tick=()=>{rx=lerp(rx,tx,0.2);ry=lerp(ry,ty,0.2);ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);}; requestAnimationFrame(tick); }
+  _numDrift(){ if(this.__nd) return; this.__nd=true; const els=[...document.querySelectorAll('section [aria-hidden="true"]')]; if(!els.length) return; const on=()=>{ els.forEach(el=>{ const r=el.getBoundingClientRect(); const off=((r.top+r.height/2)-(window.innerHeight/2))*-0.05; el.style.transform='translateY('+off.toFixed(1)+'px)'; }); }; window.addEventListener('scroll',on,{passive:true}); on(); }
+
+  renderVals(){
+    const home=this.CITIES.filter(c=>c.home), others=this.CITIES.filter(c=>!c.home);
+    const cases=this.CASES.map((c)=>({ ...c, open:()=>this.setState({modalOpen:true}) }));
+    const work = this.state.tab === 'work';
+    const tabOn = "cursor:pointer;border:none;background:#14161A;color:#EFF2F6;padding:0.6rem 1.1rem;font:600 0.72rem/1 'Hanken Grotesk';letter-spacing:0.1em;text-transform:uppercase;";
+    const tabOff = "cursor:pointer;border:none;background:transparent;color:#7B818B;padding:0.6rem 1.1rem;font:600 0.72rem/1 'Hanken Grotesk';letter-spacing:0.1em;text-transform:uppercase;";
+    return {
+      setWork:()=>this.setState({tab:'work'}), setHuman:()=>this.setState({tab:'human'}),
+      workBtnStyle: work?tabOn:tabOff, humanBtnStyle: work?tabOff:tabOn,
+      workDisp: work?'block':'none', humanDisp: work?'none':'block',
+      statusLabel:this.props.statusLabel ?? 'Working globally',
+      homeCity:home, others, snapshot:this.SNAPSHOT, cases, timeline:this.TIMELINE, tags:this.TAGS,
+      qasSteps:this.QAS_STEPS.map((t,j)=>({ num:String(j+1).padStart(2,'0'), text:t })),
+      qasOutcomes:this.QAS_OUTCOMES, qasGallery:this.QAS_GALLERY,
+      modalOpen:this.state.modalOpen,
+      closeModal:()=>this.setState({modalOpen:false}),
+      stop:(e)=>e.stopPropagation(),
+    };
+  }
+}
+</script>
+</body>
+</html>

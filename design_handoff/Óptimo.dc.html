@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--pp:#EFF2F6;--bd:#E4E9F0;--pp2:#E1E7EF;--ink:#14161A;--ind:#2422E8;--cy:#0AFFFB;--mut:#7B818B;--line:#D2D8E0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--pp);color:var(--ink);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  ::selection{background:var(--cy);color:var(--ink);}
+  .ser{font-family:'Gloock',serif;font-weight:400;letter-spacing:-0.008em;}
+  .ser i,.ser [data-i]{font-family:'Newsreader',serif;font-style:italic;font-weight:500;}
+  .lbl{font:600 0.7rem/1 'Hanken Grotesk';letter-spacing:0.18em;text-transform:uppercase;}
+  a{color:inherit;}
+  .wr{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,5vw,4rem);}
+  .nav a{position:relative;text-decoration:none;font:600 0.72rem/1 'Hanken Grotesk';letter-spacing:0.14em;text-transform:uppercase;color:var(--mut);padding-bottom:3px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+  .nav a:hover{color:var(--ink);}
+  @keyframes pdot{0%{box-shadow:0 0 0 0 rgba(10,255,251,0.5);}70%{box-shadow:0 0 0 7px rgba(10,255,251,0);}100%{box-shadow:0 0 0 0 rgba(10,255,251,0);}}
+  @media(max-width:860px){ .nav{display:none!important;} .g2{grid-template-columns:1fr!important;} .g3{grid-template-columns:1fr!important;} .sym{grid-template-columns:1fr!important;} .offerbody{grid-template-columns:1fr!important;} .startbar{grid-template-columns:1fr!important;} .herohero{grid-template-columns:1fr!important;} }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#EFF2F6">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#EFF2F6"></rect>
+    <rect x="0" y="0" width="1200" height="96" fill="#E4E9F0"></rect>
+    <rect x="0" y="96" width="1200" height="2" fill="#14161A"></rect>
+    <text x="90" y="360" font-family="Gloock, serif" font-size="120" fill="#14161A">hold up</text>
+    <text x="90" y="470" font-family="Newsreader, serif" font-style="italic" font-size="120" fill="#2422E8">as it grows.</text>
+    <rect x="860" y="220" width="240" height="300" fill="#2422E8"></rect>
+    <rect x="1020" y="460" width="66" height="66" fill="#0AFFFB"></rect>
+  </svg>
+</template>
+
+<div id="o-root">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:100;background:rgba(239,242,246,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ink);">
+    <div class="wr" style="height:66px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;">
+      <a href="Megan Eisen.dc.html" data-logo-link style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;">
+        <img src="assets/logo-megan.png" alt="Megan Eisen" style="height:22px;width:auto;display:block;" />
+        <span style="color:#A6ADB6;font-size:1.2rem;font-family:'Gloock',serif;line-height:1;">/</span>
+        <span class="ser" style="font-size:1.28rem;letter-spacing:0.01em;">Óptimo</span>
+      </a>
+      <nav class="nav" style="display:flex;align-items:center;gap:1.6rem;">
+        <a href="#how">How it works</a>
+        <a href="Megan Eisen.dc.html">Megan Eisen →</a>
+      </nav>
+      <a data-mag href="#start" style="background:var(--ind);color:#fff;padding:0.58rem 1.1rem;font:600 0.78rem/1 'Hanken Grotesk';text-decoration:none;transition:transform .15s;">Book an intro call</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="position:relative;overflow:hidden;padding:clamp(3.2rem,6vw,5.2rem) 0 clamp(2.6rem,4vw,3.8rem);background:var(--ink);color:var(--pp);">
+    <div class="wr">
+      <span class="lbl" style="color:var(--cy);">Óptimo · For founder-led businesses where the experience is the product</span>
+      <h1 data-recal data-kinetic class="ser" style="font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1.0;letter-spacing:-0.016em;margin-top:1.5rem;max-width:15ch;color:#fff;"><span class="rw" style="display:inline-block;">You</span> <span class="rw" style="display:inline-block;">built</span> <span class="rw" style="display:inline-block;">something</span> <span class="rw" style="display:inline-block;">people</span> <span class="rw" style="display:inline-block;">love.</span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">I</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">help</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">it</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">hold</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">up</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">as</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">it</span></span> <span class="rw" style="display:inline-block;"><span data-i style="color:var(--cy);">grows.</span></span></h1>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:end;margin-top:1.8rem;" class="g2">
+        <p style="font-size:clamp(1.02rem,1.3vw,1.18rem);line-height:1.64;color:rgba(233,238,244,0.82);max-width:56ch;">The business, the product, and the customer experience – I've led all three through the scale-up, the acquisition, and the launch, and I help founders keep them aligned exactly when scale is pulling them apart. One engagement, one senior partner in the room.</p>
+        <div style="display:flex;flex-direction:column;gap:0.9rem;">
+          <a data-mag href="#start" style="display:inline-flex;align-items:center;justify-content:space-between;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 1.6rem;font:600 0.94rem/1 'Hanken Grotesk';transition:transform .15s;">Book an intro call →</a>
+          <a href="#how" style="font:500 0.92rem/1 'Hanken Grotesk';color:#fff;text-decoration:none;border-bottom:2px solid var(--cy);padding-bottom:3px;align-self:flex-start;">See how it works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-BLEED PHOTO BAND -->
+  <figure style="margin:0;position:relative;background:var(--ink);overflow:hidden;border-top:1px solid var(--ink);">
+    <img src="assets/megan-keynote.jpeg" alt="Megan Eisen – on stage" style="display:block;width:100%;height:clamp(320px,38vw,480px);object-fit:cover;object-position:50% 16%;filter:grayscale(1) contrast(1.05);" />
+    <figcaption class="lbl" style="position:absolute;left:clamp(1.25rem,5vw,4rem);bottom:1.2rem;font-size:0.56rem;color:var(--cy);background:rgba(20,22,26,0.5);padding:0.5rem 0.85rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);">Megan Eisen · in the room</figcaption>
+  </figure>
+
+  <!-- PROOF BAR -->
+  <div style="border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:1.5rem 0;background:var(--bd);">
+    <div class="wr" style="display:flex;align-items:center;gap:clamp(1.4rem,4vw,3rem);flex-wrap:wrap;">
+      <span class="lbl" style="font-size:0.6rem;color:var(--mut);line-height:1.6;flex-shrink:0;">Two decades in guest/customer/user-first experiences<br />hospitality, travel &amp; lifestyle</span>
+      <div style="display:flex;align-items:center;gap:clamp(1.6rem,4vw,3.2rem);flex-wrap:wrap;flex:1;">
+        <span style="font:600 0.92rem/1.8 'Hanken Grotesk';color:var(--ink);">JPMorganChase · The Infatuation · Zagat · Avero · Four Seasons</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <section id="problem" style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>The problem</span><span aria-hidden="true" class="ser" style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;">01</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:24ch;">Most companies don't come apart when things go wrong. They come apart <span data-i style="color:var(--ind);">when things go right.</span></h2>
+      <p style="font-size:clamp(1.05rem,1.4vw,1.24rem);line-height:1.6;color:#4C5560;max-width:64ch;margin-top:1.3rem;">Early on, one or two people hold the whole thing together – the customer, the product, and the business, aligned in a few heads. Then you raise, or scale, or get acquired, and those become separate teams with separate goals. They drift. And it shows up everywhere before a dashboard ever catches it.</p>
+
+      <div class="sym" style="margin-top:2.6rem;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);">
+        <div style="padding:1.4rem 2.4rem 1.4rem 0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;"><span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">01</span><span style="font-size:1rem;line-height:1.55;">The roadmap starts optimizing the demo – and quietly loses the customer it was built for.</span></div>
+        <div style="padding:1.4rem 0 1.4rem 2.4rem;border-bottom:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;"><span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">02</span><span style="font-size:1rem;line-height:1.55;">Strategy gets set without the tech reality, so engineering inherits goals it can't ship.</span></div>
+        <div style="padding:1.4rem 2.4rem 1.4rem 0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;"><span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">03</span><span style="font-size:1rem;line-height:1.55;">The org has scaled, but the operating model, cadences, and goals haven't – so decisions stall.</span></div>
+        <div style="padding:1.4rem 0 1.4rem 2.4rem;border-bottom:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;"><span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">04</span><span style="font-size:1rem;line-height:1.55;">Product, design, and customer teams each describe "the customer" a different way.</span></div>
+        <div style="padding:1.4rem 2.4rem 1.4rem 0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;"><span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">05</span><span style="font-size:1rem;line-height:1.55;">You won early because people believed you understood their world – and that belief thins as you scale.</span></div>
+        <div style="padding:1.4rem 0 1.4rem 2.4rem;border-bottom:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;"><span class="lbl" style="font-size:0.6rem;color:var(--ind);padding-top:0.3rem;flex:none;">06</span><span style="font-size:1rem;line-height:1.55;">No single leader can hold the customer, the product, and the business at once – so someone referees instead of building.</span></div>
+      </div>
+      <p class="ser" style="margin-top:2.2rem;font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.35rem,2.4vw,1.9rem);line-height:1.32;max-width:34ch;color:var(--ink);">The gap isn't inside any one team. It's in the space between them – exactly where the experience you were loved for slips away.</p>
+    </div>
+  </section>
+
+  <!-- WHO & WHEN -->
+  <section id="who" style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>Who – and when</span><span aria-hidden="true" class="ser" style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;">02</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:24ch;">The companies I work with – and <span data-i style="color:var(--ind);">when I'm most useful to them.</span></h2>
+
+      <div class="g2" style="display:grid;grid-template-columns:0.92fr 1.08fr;gap:clamp(1.8rem,3.5vw,3rem);margin-top:2rem;">
+        <div>
+          <div class="lbl" style="font-size:0.6rem;color:var(--mut);padding-bottom:0.9rem;margin-bottom:1.2rem;border-bottom:2px solid var(--ink);">Who it's for</div>
+          <div style="position:relative;margin-bottom:1.1rem;transition:transform .3s cubic-bezier(.2,.8,.2,1);" style-hover="transform:translateY(-4px)">
+            <div style="position:absolute;right:-7px;top:-7px;width:38px;height:38px;background:var(--cy);"></div>
+            <div style="position:relative;border:1px solid var(--ink);background:var(--pp);padding:1.3rem 1.4rem;">
+              <div class="lbl" style="font-size:0.56rem;color:var(--ind);">Scaling past PMF</div>
+              <h3 class="ser" style="font-size:1.28rem;line-height:1.16;margin:0.55rem 0 0.5rem;">Hospitality &amp; travel-tech companies</h3>
+              <p style="font-size:0.93rem;line-height:1.55;color:#4C5560;">Where the roadmap has outgrown the founders' operating instinct and needs someone who's run the real thing.</p>
+            </div>
+          </div>
+          <div style="position:relative;margin-bottom:1.1rem;transition:transform .3s cubic-bezier(.2,.8,.2,1);" style-hover="transform:translateY(-4px)">
+            <div style="position:absolute;right:-7px;top:-7px;width:38px;height:38px;background:var(--cy);"></div>
+            <div style="position:relative;border:1px solid var(--ink);background:var(--pp);padding:1.3rem 1.4rem;">
+              <div class="lbl" style="font-size:0.56rem;color:var(--ind);">Drifting apart</div>
+              <h3 class="ser" style="font-size:1.28rem;line-height:1.16;margin:0.55rem 0 0.5rem;">Guest-experience, PMS &amp; booking platforms</h3>
+              <p style="font-size:0.93rem;line-height:1.55;color:#4C5560;">Whose product and on-the-ground reality have quietly separated, and need one owner to pull them back together.</p>
+            </div>
+          </div>
+          <div style="position:relative;transition:transform .3s cubic-bezier(.2,.8,.2,1);" style-hover="transform:translateY(-4px)">
+            <div style="position:absolute;right:-7px;top:-7px;width:38px;height:38px;background:var(--cy);"></div>
+            <div style="position:relative;border:1px solid var(--ink);background:var(--pp);padding:1.3rem 1.4rem;">
+              <div class="lbl" style="font-size:0.56rem;color:var(--ind);">Moving into B2B</div>
+              <h3 class="ser" style="font-size:1.28rem;line-height:1.16;margin:0.55rem 0 0.5rem;">Consumer travel products selling to operators</h3>
+              <p style="font-size:0.93rem;line-height:1.55;color:#4C5560;">Who need operator credibility with hotels and hosts that they don't have in-house yet.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="lbl" style="font-size:0.6rem;color:var(--ind);padding-bottom:0.9rem;border-bottom:2px solid var(--ink);">Where I'm sharpest – the inflection points</div>
+          <div data-reveal style="display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);"><span class="ser" style="font-size:1.1rem;color:var(--ind);">01</span><div><div class="ser" style="font-size:1.18rem;line-height:1.2;">Scaling past product-market fit</div><p style="font-size:0.92rem;line-height:1.5;color:#4C5560;margin-top:0.35rem;">Took a <strong style="color:var(--ink);font-weight:600;">founder-led editorial company to a product-led business</strong> as Chief Experience Officer.</p></div></div>
+          <div data-reveal style="display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);"><span class="ser" style="font-size:1.1rem;color:var(--ind);">02</span><div><div class="ser" style="font-size:1.18rem;line-height:1.2;">Raising, being acquired, or integrating</div><p style="font-size:0.92rem;line-height:1.5;color:#4C5560;margin-top:0.35rem;">Carried a founder-led company through its <strong style="color:var(--ink);font-weight:600;">acquisition and integration into a Fortune 500</strong>.</p></div></div>
+          <div data-reveal style="display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);"><span class="ser" style="font-size:1.1rem;color:var(--ind);">03</span><div><div class="ser" style="font-size:1.18rem;line-height:1.2;">Launching a new product or capability</div><p style="font-size:0.92rem;line-height:1.5;color:#4C5560;margin-top:0.35rem;">Directed a full iOS and Android relaunch to <strong style="color:var(--ink);font-weight:600;">+150% monthly downloads</strong>, with a new go-to-market.</p></div></div>
+          <div data-reveal style="display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);"><span class="ser" style="font-size:1.1rem;color:var(--ind);">04</span><div><div class="ser" style="font-size:1.18rem;line-height:1.2;">Consolidating onto one platform</div><p style="font-size:0.92rem;line-height:1.5;color:#4C5560;margin-top:0.35rem;">Unified <strong style="color:var(--ink);font-weight:600;">content, reservations, and benefits into one hub</strong>, with identity built from zero underneath.</p></div></div>
+          <div data-reveal style="display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;padding:1rem 0;"><span class="ser" style="font-size:1.1rem;color:var(--ind);">05</span><div><div class="ser" style="font-size:1.18rem;line-height:1.2;">Steering through a leadership transition</div><p style="font-size:0.92rem;line-height:1.5;color:#4C5560;margin-top:0.35rem;">Held <strong style="color:var(--ink);font-weight:600;">executive continuity</strong> through a leadership change, keeping delivery on track.</p></div></div>
+        </div>
+      </div>
+
+      <div data-reveal style="margin-top:2rem;background:var(--ind);color:#fff;padding:1.4rem 1.7rem;display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;" class="g2">
+        <span class="lbl" style="font-size:0.58rem;color:var(--cy);white-space:nowrap;">Who I work with directly</span>
+        <p style="font-size:1rem;line-height:1.55;">The founder, CEO, or the person who owns product and customer experience. <span class="ser" style="font-style:italic;font-family:'Newsreader',serif;color:var(--cy);">The inflection points are where I'm sharpest – though the work holds just as well in the steady climb between them.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW / THE OFFER (dark) -->
+  <section id="how" style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--ink);color:var(--pp);scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--cy);display:inline-flex;align-items:center;gap:0.7rem;"><span style="width:26px;height:1px;background:var(--cy);display:inline-block;"></span>How it works</span><span aria-hidden="true" class="ser" style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--cy);opacity:0.16;pointer-events:none;z-index:0;">03</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:22ch;color:#fff;">Proven executive judgment, <span data-i style="color:var(--cy);">priced on the value it creates.</span></h2>
+      <p style="font-size:clamp(1.02rem,1.35vw,1.18rem);line-height:1.62;color:rgba(233,238,244,0.8);max-width:66ch;margin-top:1.3rem;">You get one person who speaks the language of the business, the customer, and the product – so they stop talking past each other. A senior partner in the room from month one: concrete work up front, then an ongoing partnership priced on judgment, not hours. Some months that's judgment in your ear; some months it's hands-on, fixing real things in the org. Same rate either way, for as long as it's working.</p>
+
+      <div style="margin-top:clamp(2.2rem,4vw,3rem);display:flex;flex-direction:column;gap:0.9rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;padding:clamp(1.6rem,3vw,2.2rem) clamp(1.6rem,3vw,2.4rem);background:rgba(255,255,255,0.06);">
+          <div class="ser" style="font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:#fff;">$18,000 <span style="font-family:'Hanken Grotesk';font-weight:400;font-size:1.1rem;color:rgba(233,238,244,0.6);">/ month</span></div>
+          <div class="lbl" style="font-size:0.62rem;color:var(--cy);text-align:right;max-width:26ch;line-height:1.6;">Advisory in the ear or hands-on in the org – one rate, priced on judgment, not hours</div>
+        </div>
+        <div class="offerbody" style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;">
+          <div style="padding:clamp(1.6rem,2.8vw,2.2rem) clamp(1.6rem,3vw,2.4rem);background:rgba(255,255,255,0.06);">
+            <div class="lbl" style="font-size:0.58rem;color:var(--cy);">Month one – defined</div>
+            <h3 class="ser" style="font-size:1.5rem;line-height:1.14;margin:0.7rem 0 0.7rem;color:#fff;">We start concrete</h3>
+            <p style="font-size:0.98rem;line-height:1.58;color:rgba(233,238,244,0.82);">I embed and read where the business, the product, and the customer experience have pulled apart.</p>
+            <ul style="list-style:none;margin-top:1rem;">
+              <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;"><span style="position:absolute;left:0;color:var(--cy);">→</span>A clear read on where the drift is – and what it's costing</li>
+              <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;"><span style="position:absolute;left:0;color:var(--cy);">→</span>A first real fix, shipped inside the month</li>
+              <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;"><span style="position:absolute;left:0;color:var(--cy);">→</span>The priorities that matter, in order</li>
+            </ul>
+          </div>
+          <div style="padding:clamp(1.6rem,2.8vw,2.2rem) clamp(1.6rem,3vw,2.4rem);background:rgba(255,255,255,0.045);">
+            <div class="lbl" style="font-size:0.58rem;color:var(--cy);">After that – continuous</div>
+            <h3 class="ser" style="font-size:1.5rem;line-height:1.14;margin:0.7rem 0 0.7rem;color:#fff;">We keep going</h3>
+            <p style="font-size:0.98rem;line-height:1.58;color:rgba(233,238,244,0.82);">Same rate, month to month. No renewal, no re-sell, no new statement of work – just the partnership deepening as I operate alongside your team.</p>
+            <ul style="list-style:none;margin-top:1rem;">
+              <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;"><span style="position:absolute;left:0;color:var(--cy);">→</span>Standing weekly presence, plus judgment on call between</li>
+              <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;"><span style="position:absolute;left:0;color:var(--cy);">→</span>The business, the product, and the customer kept aligned</li>
+              <li style="font-size:0.95rem;color:rgba(233,238,244,0.9);padding:0.4rem 0 0.4rem 1.3rem;position:relative;"><span style="position:absolute;left:0;color:var(--cy);">→</span>Cancel with 15 days' notice, any time</li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+          <span class="lbl" style="font-size:0.58rem;color:rgba(233,238,244,0.85);background:rgba(255,255,255,0.06);padding:0.7rem 1rem;"><span style="color:var(--cy);">Billed</span> at the start of each month</span>
+          <span class="lbl" style="font-size:0.58rem;color:rgba(233,238,244,0.85);background:rgba(255,255,255,0.06);padding:0.7rem 1rem;"><span style="color:var(--cy);">15 days'</span> notice to wind down</span>
+          <span class="lbl" style="font-size:0.58rem;color:rgba(233,238,244,0.85);background:rgba(255,255,255,0.06);padding:0.7rem 1rem;"><span style="color:var(--cy);">A small</span> hand-picked book – limited availability</span>
+        </div>
+      </div>
+      <div style="margin-top:clamp(1.8rem,3.2vw,2.4rem);background:rgba(10,255,251,0.08);padding:clamp(1.3rem,2.4vw,1.7rem) clamp(1.4rem,3vw,2rem);display:grid;grid-template-columns:1fr auto;gap:1.2rem 2rem;align-items:center;" class="startbar">
+        <div>
+          <div class="lbl" style="font-size:0.6rem;color:var(--cy);margin-bottom:0.8rem;">Getting started is simple</div>
+          <div style="display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;font:600 1rem/1.4 'Hanken Grotesk';color:#fff;">
+            <span>Send one email</span><span style="color:var(--cy);">→</span><span>A 30-minute call</span><span style="color:var(--cy);">→</span><span>Start within the month</span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.55;color:rgba(233,238,244,0.72);margin-top:0.8rem;max-width:54ch;">No deck. No pitch. No statement of work. If it's a fit, we start – and you can cancel with 15 days' notice, any time.</p>
+        </div>
+        <a data-mag href="#start" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:0.95rem 1.7rem;font:600 0.94rem/1 'Hanken Grotesk';white-space:nowrap;transition:transform .15s;">Book an intro call →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section id="get" style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>What you get</span><span aria-hidden="true" class="ser" style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;">04</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:26ch;">Not a framework. Judgment, in the room, <span data-i style="color:var(--ind);">from someone who's done it.</span></h2>
+      <div style="margin-top:2.4rem;border-top:1px solid var(--ink);">
+        <div style="display:grid;grid-template-columns:3rem 1fr;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;"><span class="lbl" style="font-size:0.7rem;color:var(--ind);">01</span><div><div class="ser" style="font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.24;">An operating model that scales with you</div><p style="font-size:1rem;line-height:1.6;color:#4C5560;margin-top:0.5rem;max-width:70ch;">Vision, org design, working models, OKRs, and the cadences that make decisions move instead of stall – built through a founder-led company's integration into a Fortune 500.</p></div></div>
+        <div style="display:grid;grid-template-columns:3rem 1fr;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;"><span class="lbl" style="font-size:0.7rem;color:var(--ind);">02</span><div><div class="ser" style="font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.24;">An executive who's owned the budget</div><p style="font-size:1rem;line-height:1.6;color:#4C5560;margin-top:0.5rem;max-width:70ch;">I've owned a ~$25M budget across headcount, tools, technology, and travel, and led a 100-plus-person org. Priorities from someone who knows what the numbers cost to hit, not just what they should be.</p></div></div>
+        <div style="display:grid;grid-template-columns:3rem 1fr;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;"><span class="lbl" style="font-size:0.7rem;color:var(--ind);">03</span><div><div class="ser" style="font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.24;">Product that ships – and lands</div><p style="font-size:1rem;line-height:1.6;color:#4C5560;margin-top:0.5rem;max-width:70ch;">A full iOS and Android relaunch that drove monthly downloads +150% and sign-ups +30% – without letting the bar drop as it scaled. Launches that move the business, not just the backlog.</p></div></div>
+        <div style="display:grid;grid-template-columns:3rem 1fr;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;"><span class="lbl" style="font-size:0.7rem;color:var(--ind);">04</span><div><div class="ser" style="font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.24;">Scale that holds together</div><p style="font-size:1rem;line-height:1.6;color:#4C5560;margin-top:0.5rem;max-width:70ch;">I unified content, reviews, reservations, and benefits into one platform – with authenticated identity built from zero to nearly a million accounts – inside a 60M-customer ecosystem.</p></div></div>
+        <div style="display:grid;grid-template-columns:3rem 1fr;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--line);align-items:baseline;"><span class="lbl" style="font-size:0.7rem;color:var(--ind);">05</span><div><div class="ser" style="font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.24;">A relentless bar for the customer</div><p style="font-size:1rem;line-height:1.6;color:#4C5560;margin-top:0.5rem;max-width:70ch;">Design judgment and customer priority woven through every call – from twenty years in businesses where the experience is the product.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY OPTIMO -->
+  <section id="why" style="position:relative;overflow:hidden;padding:clamp(3.4rem,6vw,5.5rem) 0;border-top:1px solid var(--ink);background:var(--bd);scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--ind);display:inline-flex;align-items:center;gap:0.7rem;"><span style="width:26px;height:1px;background:var(--ind);display:inline-block;"></span>Why Óptimo</span><span aria-hidden="true" class="ser" style="position:absolute;top:clamp(0.7rem,2.6vw,2rem);right:clamp(1rem,4vw,3rem);font-size:clamp(3rem,9vw,7rem);line-height:0.8;color:var(--ind);opacity:0.1;pointer-events:none;z-index:0;">05</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1;margin:1rem 0 0;max-width:24ch;">For twenty years, I've led the business, the product, and the experience – <span data-i style="color:var(--ind);">as one job.</span></h2>
+      <div class="g2" style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(1.8rem,4vw,3.5rem);align-items:start;margin-top:2.2rem;">
+        <div>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1rem;max-width:52ch;">Most executives are strong at one of the business, the product, and design, and can only speak to the others. I've led all three – and I <strong style="color:var(--ink);font-weight:600;">start with the business:</strong> strategy, org design, working models, clear priorities, the budget that funds them, and the communication that moves people.</p>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1rem;max-width:52ch;">As Chief Experience Officer I built the operating model, OKR system, and review cadence that carried a founder-led company through its acquisition and integration into a Fortune 500. I've owned a <strong style="color:var(--ink);font-weight:600;">~$25M budget</strong> and grown from a team of two to a <strong style="color:var(--ink);font-weight:600;">100-plus-person org across five continents.</strong></p>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1rem;max-width:52ch;">Product is delivery – shipped roadmaps, tech tradeoffs, AI-enabled bets, and scale. I made the call to treat mobile as the platform rather than a companion, and built authenticated identity from zero to nearly a million accounts – a company people read became one they log into.</p>
+          <p style="font-size:1.06rem;line-height:1.66;color:#39414C;margin-bottom:1.3rem;max-width:52ch;">Design is the judgment underneath both – knowing what "good" looks like, and building holistically so the solution preserves the experience instead of sacrificing it to ship. Twenty years in guest-first companies makes protecting it instinct, not a competency I bolted on.</p>
+        </div>
+        <div>
+          <figure data-reveal style="margin:0;position:relative;">
+            <div data-offset-block style="position:absolute;right:-4%;top:-5%;width:30%;height:30%;background:var(--cy);"></div>
+            <img src="assets/megan-street.jpeg" alt="Megan Eisen – New York City" style="position:relative;width:100%;height:clamp(360px,44vw,560px);object-fit:cover;object-position:50% 18%;display:block;box-shadow:0 18px 44px rgba(0,0,0,0.16);" />
+          </figure>
+          <div class="lbl" style="font-size:0.56rem;color:var(--ind);margin-top:1rem;">Megan Eisen · Founder, Óptimo</div>
+        </div>
+      </div>
+      <p class="ser" data-reveal style="font-style:italic;font-family:'Newsreader',serif;font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.3;color:var(--ink);max-width:62ch;margin-top:clamp(2.4rem,4.5vw,3.4rem);">You're not paying for a framework. You're paying for someone who's run the business, shipped the product, and kept the customer – and helps you hold all three together when it counts.</p>
+      <p style="font-size:1rem;line-height:1.7;color:#39414C;max-width:64ch;margin-top:1.4rem;">The full record – twenty years across the business, the customer, and the product, on five continents → <a href="Megan Eisen.dc.html" style="color:var(--ind);text-decoration:none;border-bottom:2px solid var(--ind);padding-bottom:2px;">More about Megan</a></p>
+    </div>
+  </section>
+
+  <!-- START / CTA -->
+  <section id="start" style="padding:clamp(3.6rem,6vw,6rem) 0;border-top:1px solid var(--ink);background:var(--ind);color:#fff;text-align:center;scroll-margin-top:66px;">
+    <div class="wr">
+      <span class="lbl" style="color:var(--cy);">Start here</span>
+      <h2 data-reveal class="ser" style="font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.04;margin:1rem auto 0;max-width:20ch;">Start with a <span data-i style="color:var(--cy);">conversation.</span></h2>
+      <p style="font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.66;color:rgba(255,255,255,0.86);margin:1.3rem auto 0;max-width:52ch;">Thirty minutes – no pitch, no deck. I want to understand your world and see whether I'm the right person for it. If we're a fit, we start.</p>
+      <a data-mag href="mailto:megan@meganeisen.com?subject=%C3%93ptimo%20%E2%80%94%20intro%20call&body=Hi%20Megan%2C%0A%0AI%27d%20like%20to%20book%20an%20intro%20call.%0A%0ACompany%3A%20%0AWhere%20we%20are%3A%20%0AWhat%27s%20on%20my%20mind%3A%20%0A%0AThanks%2C" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 2rem;font:600 0.98rem/1 'Hanken Grotesk';margin-top:2.2rem;transition:transform .15s;">Book an intro call →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="wr" style="padding:2.4rem clamp(1.25rem,5vw,4rem);display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;">
+    <div>
+      <span class="ser" style="font-size:1.4rem;">Óptimo</span>
+      <p style="font-size:0.82rem;color:var(--mut);margin-top:0.3rem;">A practice of Megan Eisen</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.6rem;">
+      <a href="Megan Eisen.dc.html" style="font-size:0.82rem;color:#4C5560;text-decoration:none;">Megan Eisen</a>
+      <a href="https://linkedin.com/in/megan-eisen" target="_blank" rel="noopener" style="font-size:0.82rem;color:#4C5560;text-decoration:none;">LinkedIn</a>
+      <a href="mailto:megan@meganeisen.com" style="font-size:0.82rem;color:#4C5560;text-decoration:none;">Email</a>
+      <span style="font-size:0.82rem;color:var(--mut);">© 2026</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount(){ this._setup(); }
+  componentDidUpdate(){ this._setup(); }
+  _setup(){ requestAnimationFrame(()=>{ this._recal(); this._reveal(); this._mag(); this._fx(); this._kinetic(); this._offsetCards(); this._chapterRail(); this._spotlight(); this._scramble(); this._numDrift(); }); }
+
+  _recal(){
+    document.querySelectorAll('[data-recal]').forEach(h=>{ if(h.__rc) return; h.__rc=true;
+      h.querySelectorAll('.rw').forEach((w,i)=>{ w.style.opacity='0';
+        try{ const an=w.animate([{opacity:0,transform:'translateY(-0.4em)',filter:'blur(5px)'},{opacity:1,transform:'translateY(0)',filter:'blur(0)'}],{duration:820,delay:70+i*50,easing:'cubic-bezier(.22,.92,.26,1)'}); an.onfinish=()=>{ w.style.opacity='1'; w.style.transform='none'; w.style.filter='none'; }; }catch(e){ w.style.opacity='1'; } });
+      setTimeout(()=>{ h.querySelectorAll('.rw').forEach(w=>{ w.style.opacity='1'; w.style.transform='none'; }); },2200);
+    });
+  }
+  _reveal(){
+    const _p=(el)=>{ el.style.opacity='1'; el.style.transform='none'; }; if(!this._io) this._io=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ _p(en.target); this._io.unobserve(en.target); } }); },{ threshold:0.05, rootMargin:'0px 0px -4% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.__r) return; el.__r=true; const r=el.getBoundingClientRect(); if(r.top<(window.innerHeight||800)*0.97 && r.bottom>0){ _p(el); return; } el.style.opacity='0'; el.style.transform='translateY(18px)'; el.style.transition='opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)'; this._io.observe(el); setTimeout(()=>_p(el),1100); });
+  }
+  _mag(){
+    document.querySelectorAll('[data-mag]').forEach(el=>{ if(el.__m) return; el.__m=true; el.style.willChange='transform';
+      el.addEventListener('mousemove',(e)=>{ const r=el.getBoundingClientRect(); el.style.transition='transform .08s linear'; el.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*0.18}px,${(e.clientY-(r.top+r.height/2))*0.32}px)`; });
+      el.addEventListener('mouseleave',()=>{ el.style.transition='transform .4s cubic-bezier(.2,.9,.2,1)'; el.style.transform='translate(0,0)'; });
+    });
+  }
+  _fx(){
+    if(this.__fx) return; this.__fx=true;
+    [...document.querySelectorAll('nav a:not([data-mag]):not([data-logo-link]), footer a')].forEach(a=>{
+      if(a.__ul) return; a.__ul=true;
+      a.style.backgroundImage='linear-gradient(#0AFFFB,#0AFFFB)'; a.style.backgroundRepeat='no-repeat'; a.style.backgroundPosition='0 100%'; a.style.backgroundSize='0% 1.5px'; a.style.paddingBottom='2px';
+      a.style.transition=(a.style.transition?a.style.transition+',':'')+'background-size .35s cubic-bezier(.2,.8,.2,1)';
+      a.addEventListener('mouseenter',()=>{ a.style.backgroundSize='100% 1.5px'; });
+      a.addEventListener('mouseleave',()=>{ a.style.backgroundSize='0% 1.5px'; });
+    });
+    document.querySelectorAll('[data-logo]').forEach(l=>{
+      if(l.__lh) return; l.__lh=true;
+      l.addEventListener('mouseenter',()=>{ l.style.opacity='1'; l.style.transform='translateY(-2px)'; });
+      l.addEventListener('mouseleave',()=>{ l.style.opacity='0.78'; l.style.transform='none'; });
+    });
+    const fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    if(!fine || document.getElementById('fxring')) return;
+    const ring=document.createElement('div'); ring.id='fxring';
+    ring.style.cssText='position:fixed;left:0;top:0;width:32px;height:32px;border:1.5px solid #2422E8;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);opacity:0;transition:width .28s cubic-bezier(.2,.8,.2,1),height .28s cubic-bezier(.2,.8,.2,1),border-color .28s ease,background-color .28s ease,opacity .3s ease;';
+    document.body.appendChild(ring);
+    let tx=innerWidth/2,ty=innerHeight/2,rx=tx,ry=ty,started=false;
+    const lerp=(a,b,n)=>a+(b-a)*n;
+    addEventListener('mousemove',e=>{ tx=e.clientX; ty=e.clientY; if(!started){ started=true; rx=tx; ry=ty; ring.style.opacity='1'; } });
+    addEventListener('mouseout',e=>{ if(!e.relatedTarget) ring.style.opacity='0'; });
+    const hov='a,button,[data-mag],[data-logo]';
+    document.addEventListener('mouseover',e=>{ const t=e.target.closest&&e.target.closest(hov); if(t){ ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='#0AFFFB'; ring.style.backgroundColor='rgba(10,255,251,0.10)'; } });
+    document.addEventListener('mouseout',e=>{ const t=e.target.closest&&e.target.closest(hov); if(t){ ring.style.width='32px'; ring.style.height='32px'; ring.style.borderColor='#2422E8'; ring.style.backgroundColor='transparent'; } });
+    const tick=()=>{ rx=lerp(rx,tx,0.2); ry=lerp(ry,ty,0.2); ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(tick); }; requestAnimationFrame(tick);
+  }
+
+
+  _kinetic(){ document.querySelectorAll('[data-kinetic]').forEach(box=>{if(box.__k)return;box.__k=true;const ws=[...box.querySelectorAll('.rw')];ws.forEach(w=>{w.style.transition='transform .35s cubic-bezier(.2,.8,.2,1)';w.style.willChange='transform';});box.addEventListener('pointermove',(e)=>{ws.forEach(w=>{const r=w.getBoundingClientRect();const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);const dist=Math.hypot(dx,dy)||1;const f=Math.max(0,1-dist/440)*13;w.style.transform='translate('+((dx/dist)*f)+'px,'+((dy/dist)*f)+'px)';});});box.addEventListener('pointerleave',()=>{ws.forEach(w=>{w.style.transform='none';});});}); }
+  _offsetCards(){ document.querySelectorAll('[data-offset-block]').forEach(b=>{if(b.__oc)return;b.__oc=true;const c=b.parentElement;if(!c)return;b.style.transition='transform .45s cubic-bezier(.2,.85,.25,1)';c.style.cursor='pointer';c.addEventListener('mouseenter',()=>{b.style.transform='translate(10px,-10px)';});c.addEventListener('mouseleave',()=>{b.style.transform='translate(0,0)';});}); }
+  _chapterRail(){ if(this.__cr)return; this.__cr=true; if(window.innerWidth<980)return; const secs=[...document.querySelectorAll('section[id]')].filter(s=>s.id&&s.id!=='top'); if(secs.length<2)return; const rail=document.createElement('div'); rail.style.cssText='position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:300;display:flex;flex-direction:column;gap:11px;align-items:flex-end;'; secs.forEach(s=>{ const a=document.createElement('a'); a.href='#'+s.id; a.style.cssText='display:flex;align-items:center;gap:9px;text-decoration:none;'; a.innerHTML='<span class="rlab" style="font:600 0.5rem/1 Hanken Grotesk;letter-spacing:0.16em;text-transform:uppercase;color:#7B818B;opacity:0;transform:translateX(4px);transition:opacity .2s,transform .2s;white-space:nowrap;">'+s.id+'</span><span class="rdot" style="width:8px;height:8px;background:#B9C0C9;transition:background .25s,transform .25s;"></span>'; a.addEventListener('mouseenter',()=>{const l=a.querySelector('.rlab');l.style.opacity='1';l.style.transform='translateX(0)';}); a.addEventListener('mouseleave',()=>{const l=a.querySelector('.rlab');l.style.opacity='0';l.style.transform='translateX(4px)';}); rail.appendChild(a); }); document.body.appendChild(rail); const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.id; rail.querySelectorAll('a').forEach(a=>{const on=a.getAttribute('href')==='#'+id; const d=a.querySelector('.rdot'); d.style.background=on?'#2422E8':'#B9C0C9'; d.style.transform=on?'scale(1.6)':'scale(1)';});}});},{rootMargin:'-45% 0px -50% 0px'}); secs.forEach(s=>io.observe(s)); }
+
+
+  _spotlight(){ document.querySelectorAll('[data-spot]').forEach(el=>{if(el.__sp)return;el.__sp=true;el.style.position='relative';el.style.overflow='hidden';const wr=el.querySelector('.wr');if(wr){wr.style.position='relative';wr.style.zIndex='1';}const gg=document.createElement('div');gg.style.cssText='position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:0;';el.insertBefore(gg,el.firstChild);el.addEventListener('mousemove',(e)=>{const r=el.getBoundingClientRect();gg.style.background='radial-gradient(480px circle at '+(e.clientX-r.left)+'px '+(e.clientY-r.top)+'px, rgba(10,255,251,0.32), transparent 58%)';gg.style.opacity='1';});el.addEventListener('mouseleave',()=>{gg.style.opacity='0';});}); }
+  _scramble(){ if(this.__sc) return; this.__sc=true; const g='ABCDEFGHKMNPRSTVXZ0123456789$%'; const SK=new Set([' ','.',',','-',String.fromCharCode(160),String.fromCharCode(8594)]); const run=(el)=>{const final=(el.getAttribute('data-target')||el.textContent).trim();const dur=760;const st=performance.now();const step=(now)=>{const p=Math.min(1,(now-st)/dur);const rev=p*final.length;let o='';for(let i=0;i<final.length;i++){const c=final[i];if(SK.has(c)){o+=c;continue;}if(i<rev-0.4)o+=c;else o+=g[Math.floor(Math.random()*g.length)];}el.textContent=o;if(p<1)requestAnimationFrame(step);else el.textContent=final;};requestAnimationFrame(step);}; const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:0.4}); document.querySelectorAll('[data-count]').forEach(el=>{if(!el.getAttribute('data-target'))el.setAttribute('data-target',el.textContent.trim());io.observe(el);}); }
+
+
+  _numDrift(){ if(this.__nd) return; this.__nd=true; const els=[...document.querySelectorAll('section [aria-hidden="true"]')]; if(!els.length) return; const on=()=>{ els.forEach(el=>{ const r=el.getBoundingClientRect(); const off=((r.top+r.height/2)-(window.innerHeight/2))*-0.05; el.style.transform='translateY('+off.toFixed(1)+'px)'; }); }; window.addEventListener('scroll',on,{passive:true}); on(); }
+
+  renderVals(){ return {}; }
+}
+</script>
+</body>
+</html>

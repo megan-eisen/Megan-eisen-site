@@ -1,0 +1,253 @@
+/* ==========================================================================
+   meganeisen.com — shared visual system
+   Editorial, hard-edged, confident. No border-radius anywhere.
+   Tokens and base classes are identical across both pages.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pp: #eff2f6;   /* paper (page bg) — cool off-white */
+  --bd: #e4e9f0;   /* paper-2 (alt bg) */
+  --pp2: #e1e7ef;  /* paper-3 */
+  --ink: #14161a;  /* ink (text / dark bg) */
+  --ind: #2422e8;  /* indigo (primary accent) */
+  --cy: #0afffb;   /* cyan (secondary accent) */
+  --mut: #7b818b;  /* muted grey */
+  --line: #d2d8e0; /* hairline */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  background: var(--pp);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--cy);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+/* The `hidden` attribute must beat inline display (used by the post-launch
+   case modal, which carries an inline display:flex for its open state). */
+[hidden] {
+  display: none !important;
+}
+
+/* Display serif (Gloock) with Newsreader-italic accents */
+.ser {
+  font-family: 'Gloock', serif;
+  font-weight: 400;
+  letter-spacing: -0.008em;
+}
+.ser i,
+.ser [data-i] {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Uppercase micro-labels */
+.lbl {
+  font: 600 0.7rem/1 'Hanken Grotesk';
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Centered container. max-width is set per page via --wr-max. */
+.wr {
+  max-width: var(--wr-max, 1180px);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Tabular clock digits */
+.clk {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Nav links (scroll-spy underline is driven by JS on Megan page) */
+.nav a {
+  position: relative;
+  text-decoration: none;
+  font: 600 0.72rem/1 'Hanken Grotesk';
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mut);
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav a:hover {
+  color: var(--ink);
+}
+
+/* Placeholder photography treatment — kept on all portraits */
+.heroimg {
+  width: 100%;
+  height: clamp(340px, 42vw, 500px);
+  object-fit: cover;
+  object-position: 50% 20%;
+  display: block;
+  filter: grayscale(1) contrast(1.05);
+}
+.photo {
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* Pulsing live dot (home city) */
+@keyframes pdot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(10, 255, 251, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(10, 255, 251, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(10, 255, 251, 0);
+  }
+}
+
+/* Case-study modal (post-launch, hidden by default) */
+@keyframes camo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes capanel {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Óptimo proof-bar marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Work-card brighten on hover */
+.casecard:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+/* "Who it's for" cards lift on hover */
+.whocard {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.whocard:hover {
+  transform: translateY(-4px);
+}
+
+/* Cyan offset block snaps out when its parent is hovered */
+[data-offset-parent] {
+  cursor: pointer;
+}
+[data-offset-block] {
+  transition: transform 0.45s cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+[data-offset-parent]:hover [data-offset-block] {
+  transform: translate(10px, -10px);
+}
+
+/* Focus states: cyan outline, offset 4px, no radius */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cy);
+  outline-offset: 4px;
+}
+
+.caseModal::-webkit-scrollbar {
+  width: 10px;
+}
+.caseModal::-webkit-scrollbar-thumb {
+  background: var(--line);
+}
+
+/* --- Responsive: single breakpoint at 860px --- */
+@media (max-width: 860px) {
+  .herogrid {
+    grid-template-columns: 1fr !important;
+  }
+  .nav {
+    display: none !important;
+  }
+  .heroimg {
+    height: clamp(300px, 60vw, 420px);
+  }
+  .snapgrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .expgrid,
+  .forkgrid,
+  .g2,
+  .g3,
+  .sym,
+  .offerbody,
+  .startbar,
+  .herohero {
+    grid-template-columns: 1fr !important;
+  }
+  .casecard {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .casegrid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --- Reduced motion: settle everything, disable transforms/animations --- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  /* Any reveal/headline element left hidden by JS is forced visible. */
+  [data-reveal],
+  [data-recal] .rw {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
