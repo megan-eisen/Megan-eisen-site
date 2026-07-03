@@ -7,10 +7,9 @@ export const CONTACT_EMAIL = 'megan@meganeisen.com';
 export const LINKEDIN_URL = 'https://linkedin.com/in/megan-eisen';
 export const INSTAGRAM_URL = 'https://instagram.com/meg_n_reed';
 
-// Contact form endpoint. Replace `xxxxxxxx` with the real Formspree form ID
-// (formspree.io → New Form → copy the ID from the endpoint URL). Until then the
-// form posts to a placeholder and Formspree returns a "form not found" page.
-export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xxxxxxxx';
+// Contact form endpoint (Formspree). Submitted via fetch in ContactForm.astro
+// with a plain POST `action` fallback for no-JS clients.
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgyalyd';
 
 // Prefilled mailto for the Óptimo "Book an intro call" CTA.
 export const OPTIMO_INTRO_MAILTO =
