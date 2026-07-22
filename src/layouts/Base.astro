@@ -28,6 +28,9 @@ const {
   noindex = false,
 } = Astro.props;
 
+// Bump when the logo/icons change, to bust the browser's favicon cache.
+const ICON_V = '2';
+
 // Absolute URLs — required by Open Graph / Twitter and for canonicals.
 // Astro's default `directory` build format emits /optimo/index.html, which
 // GitHub Pages serves at /optimo/ (301 from /optimo). Keep the trailing slash
@@ -79,10 +82,16 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <!-- Icons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <!--
+      Icons. /favicon.ico must exist: browsers request it from the domain root
+      automatically and cache it hard per-origin — without it, a favicon cached
+      from a previous site at this domain sticks around. `?v=` busts that cache;
+      bump ICON_V in this file whenever the logo changes.
+    -->
+    <link rel="icon" href={`/favicon.ico?v=${ICON_V}`} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={`/favicon-32.png?v=${ICON_V}`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`/favicon-16.png?v=${ICON_V}`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`/apple-touch-icon.png?v=${ICON_V}`} />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Fonts: Gloock (display), Newsreader (italic accent), Hanken Grotesk (UI) -->
