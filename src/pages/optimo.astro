@@ -41,12 +41,47 @@ function symptomCellStyle(i: number): string {
     ? `padding:1.4rem 2.4rem 1.4rem 0;border-right:1px solid var(--line);${base}`
     : `padding:1.4rem 0 1.4rem 2.4rem;${base}`;
 }
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Óptimo',
+  url: 'https://meganeisen.com/optimo',
+  image: 'https://meganeisen.com/og-optimo.jpg',
+  description:
+    'Advisory practice for founder-led businesses where the experience is the product. One engagement, one senior partner in the room.',
+  email: `mailto:${CONTACT_EMAIL}`,
+  areaServed: 'Worldwide',
+  founder: {
+    '@type': 'Person',
+    name: 'Megan Eisen',
+    url: 'https://meganeisen.com',
+  },
+  parentOrganization: {
+    '@type': 'Person',
+    name: 'Megan Eisen',
+    url: 'https://meganeisen.com',
+  },
+  serviceType: 'Executive advisory and operating-model consulting',
+  offers: {
+    '@type': 'Offer',
+    price: '18000',
+    priceCurrency: 'USD',
+    description:
+      'Monthly advisory engagement — advisory in the ear or hands-on in the org, one rate. Cancel with 15 days notice.',
+    availability: 'https://schema.org/LimitedAvailability',
+  },
+};
 ---
 
 <Base
   title="Óptimo — Advisory for founder-led companies · Megan Eisen"
-  description="Óptimo is Megan Eisen's advisory practice for founder-led businesses where the experience is the product. One engagement, one senior partner in the room — helping you hold up as you grow."
+  description="Advisory for founder-led businesses where the experience is the product. One engagement, one senior partner in the room — helping what you built hold up as it grows."
   wrMax="1120px"
+  ogImage="/og-optimo.jpg"
+  ogImageAlt="Megan Eisen speaking on stage"
+  ogType="website"
+  jsonLd={serviceSchema}
 >
   <!-- NAV -->
   <header

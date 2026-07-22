@@ -34,12 +34,43 @@ const heroWords: { text: string; accent?: boolean }[] = [
   { text: 'to', accent: true },
   { text: 'Fortune 500.', accent: true },
 ];
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Megan Eisen',
+  url: 'https://meganeisen.com',
+  image: 'https://meganeisen.com/og-megan.jpg',
+  jobTitle: 'Product, Design & Business Operations Executive',
+  email: `mailto:${CONTACT_EMAIL}`,
+  description:
+    'Executive leading business, product, and customer experience — from founder-led companies to Fortune 500. Founder of the advisory practice Óptimo.',
+  sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Óptimo',
+    url: 'https://meganeisen.com/optimo',
+  },
+  knowsAbout: [
+    'Product management',
+    'Design leadership',
+    'Business operations',
+    'Customer experience',
+    'Operating models',
+    'Hospitality and travel technology',
+    'Post-acquisition integration',
+  ],
+};
 ---
 
 <Base
   title="Megan Eisen — Product, Design & Business Operations Executive"
-  description="Twenty years leading business, product, and experience across hospitality and travel. Most recently Chief Experience Officer, carrying The Infatuation through its acquisition by JPMorganChase. Now founder of Óptimo."
+  description="Executive leading business, product, and customer experience — from founder-led to Fortune 500. Former Chief Experience Officer of The Infatuation. Founder of Óptimo."
   wrMax="1180px"
+  ogImage="/og-megan.jpg"
+  ogImageAlt="Megan Eisen"
+  ogType="profile"
+  jsonLd={personSchema}
 >
   <!-- HEADER -->
   <header

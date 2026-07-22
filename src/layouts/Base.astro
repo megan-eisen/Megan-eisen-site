@@ -6,9 +6,35 @@ interface Props {
   description: string;
   /** Container max-width: 1180px on Megan, 1120px on Óptimo. */
   wrMax?: string;
+  /** Social share image, relative to site root. 1200x630. */
+  ogImage?: string;
+  ogImageAlt?: string;
+  /** og:type — 'profile' for Megan's page, 'website' for Óptimo. */
+  ogType?: string;
+  /** JSON-LD structured data object for this page. */
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, wrMax = '1180px' } = Astro.props;
+const {
+  title,
+  description,
+  wrMax = '1180px',
+  ogImage = '/og-megan.jpg',
+  ogImageAlt = 'Megan Eisen',
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+// Absolute URLs — required by Open Graph / Twitter and for canonicals.
+// Astro's default `directory` build format emits /optimo/index.html, which
+// GitHub Pages serves at /optimo/ (301 from /optimo). Keep the trailing slash
+// so the canonical points at the final URL rather than a redirect, and matches
+// what @astrojs/sitemap emits.
+const pathname = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonical = new URL(pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
 ---
 
 <!doctype html>
@@ -16,8 +42,40 @@ const { title, description, wrMax = '1180px' } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" href="/assets/logo-megan.png" />
+    <link rel="canonical" href={canonical} />
+    <meta name="author" content="Megan Eisen" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#14161A" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Megan Eisen" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Fonts: Gloock (display), Newsreader (italic accent), Hanken Grotesk (UI) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +85,12 @@ const { title, description, wrMax = '1180px' } = Astro.props;
       rel="stylesheet"
     />
 
-    <title>{title}</title>
+    {
+      jsonLd && (
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      )
+    }
+
     <style is:global define:vars={{ wrMax }}>
       :root {
         --wr-max: var(--wrMax);
