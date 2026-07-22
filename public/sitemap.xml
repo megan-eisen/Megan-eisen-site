@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Convenience alias at the conventional /sitemap.xml path.
+  @astrojs/sitemap emits sitemap-index.xml + sitemap-0.xml; this points at the
+  same generated sitemap-0.xml, so new pages appear here automatically with no
+  manual edits. Both /sitemap.xml and /sitemap-index.xml resolve to the same set.
+-->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://meganeisen.com/sitemap-0.xml</loc>
+  </sitemap>
+</sitemapindex>
