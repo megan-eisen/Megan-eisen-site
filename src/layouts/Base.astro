@@ -13,6 +13,8 @@ interface Props {
   ogType?: string;
   /** JSON-LD structured data object for this page. */
   jsonLd?: Record<string, unknown>;
+  /** Keep this page out of search results (used by 404). */
+  noindex?: boolean;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   ogImageAlt = 'Megan Eisen',
   ogType = 'website',
   jsonLd,
+  noindex = false,
 } = Astro.props;
 
 // Absolute URLs — required by Open Graph / Twitter and for canonicals.
@@ -48,7 +51,12 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta name="author" content="Megan Eisen" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta
+      name="robots"
+      content={
+        noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'
+      }
+    />
     <meta name="theme-color" content="#14161A" />
     <meta name="color-scheme" content="light" />
 

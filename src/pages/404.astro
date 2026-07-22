@@ -1,0 +1,109 @@
+---
+// Branded 404. GitHub Pages serves /404.html automatically for unmatched paths.
+// Matters here because the previous Webflow site had pages (/about, /work, …)
+// that are still in Google's index and will 404 until they drop out.
+import Base from '../layouts/Base.astro';
+import { CONTACT_EMAIL } from '../lib/site';
+---
+
+<Base
+  title="Page not found — Megan Eisen"
+  description="That page doesn't exist. Find Megan Eisen's work, background, and contact details here."
+  wrMax="1180px"
+  noindex={true}
+>
+  <!-- HEADER -->
+  <header
+    style="position:sticky;top:0;z-index:100;background:rgba(239,242,246,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ink);"
+  >
+    <div
+      class="wr"
+      style="height:66px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;"
+    >
+      <a href="/" style="display:flex;align-items:center;gap:0.55rem;text-decoration:none;">
+        <img src="/assets/logo-megan.png" alt="Megan Eisen" style="height:23px;width:auto;" />
+        <span class="ser" style="font-size:1.12rem;">Megan Eisen</span>
+      </a>
+      <nav class="nav" style="display:flex;align-items:center;gap:1.6rem;">
+        <a href="/#work">Work</a>
+        <a href="/#about">About</a>
+        <a href="/optimo">Óptimo →</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:1.1rem;">
+        <a
+          data-mag
+          href="/#contact"
+          style="background:var(--ink);color:var(--pp);padding:0.58rem 1.1rem;font:600 0.78rem/1 'Hanken Grotesk';text-decoration:none;white-space:nowrap;transition:transform .15s;"
+          >Let's talk</a
+        >
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:clamp(3.5rem,9vw,7rem) 0 clamp(3rem,7vw,5.5rem);">
+    <div class="wr">
+      <span class="lbl" style="color:var(--ind);">Error 404</span>
+      <h1
+        class="ser"
+        style="font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.04;letter-spacing:-0.016em;margin-top:1.2rem;max-width:18ch;"
+      >
+        That page has <span data-i style="color:var(--ind);">moved on.</span>
+      </h1>
+      <p
+        style="font-size:clamp(1.02rem,1.3vw,1.16rem);line-height:1.66;color:#4C5560;max-width:52ch;margin-top:1.4rem;"
+      >
+        The link you followed points somewhere that no longer exists – this site was rebuilt, and a
+        few older pages went with it. Everything is still here, just in fewer places.
+      </p>
+
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:2.2rem;">
+        <a
+          data-mag
+          href="/"
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--ind);color:#fff;text-decoration:none;padding:0.92rem 1.7rem;font:600 0.92rem/1 'Hanken Grotesk';transition:transform .15s;"
+          >Go to the homepage →</a
+        >
+        <a
+          href="/optimo"
+          style="color:var(--ind);text-decoration:none;border-bottom:2px solid var(--ind);padding-bottom:2px;font:600 0.95rem/1 'Hanken Grotesk';"
+          >See Óptimo →</a
+        >
+      </div>
+
+      <!-- Direct routes to what the old pages used to hold -->
+      <div style="margin-top:clamp(2.6rem,5vw,3.6rem);border-top:1px solid var(--ink);max-width:58ch;">
+        <div class="lbl" style="font-size:0.58rem;color:var(--mut);margin-top:1.4rem;">
+          What you were probably looking for
+        </div>
+        <ul style="list-style:none;margin-top:1rem;">
+          {
+            [
+              { href: '/#work', label: 'Selected work', note: 'Case studies and proof points' },
+              { href: '/#about', label: 'About Megan', note: 'Background, at work and as a human' },
+              { href: '/#experience', label: 'Experience', note: 'Career timeline and résumé' },
+              { href: '/optimo', label: 'Óptimo', note: 'The advisory practice for founders' },
+              { href: '/#contact', label: 'Contact', note: 'Get in touch directly' },
+            ].map((l) => (
+              <li style="padding:0.95rem 0;border-bottom:1px solid var(--line);">
+                <a
+                  href={l.href}
+                  style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;text-decoration:none;"
+                >
+                  <span style="font-size:1.02rem;font-weight:600;color:var(--ink);">{l.label}</span>
+                  <span style="font-size:0.86rem;color:#4C5560;text-align:right;">{l.note}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p style="font-size:0.94rem;line-height:1.7;color:#565E68;margin-top:1.4rem;">
+          Still stuck? Email <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            style="color:var(--ind);text-decoration:none;border-bottom:1.5px solid var(--ind);"
+            >{CONTACT_EMAIL}</a
+          > and I'll point you the right way.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
