@@ -23,7 +23,8 @@ export const OPTIMO_ID = `${SITE}/optimo#practice`;
 // for the signal to be reciprocal — see README "Brand entity".
 const SAME_AS = [
   LINKEDIN_URL, // https://linkedin.com/in/megan-eisen
-  INSTAGRAM_URL, // https://instagram.com/meg_n_reed
+  'https://www.crunchbase.com/person/megan-eisen-11aa',
+  INSTAGRAM_URL, // https://instagram.com/megneisen
   'https://x.com/Meg_Eisen',
   'https://medium.com/@meganeisen',
   'https://meganeisen.substack.com',

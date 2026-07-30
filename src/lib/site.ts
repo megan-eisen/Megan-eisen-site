@@ -5,7 +5,7 @@
 
 export const CONTACT_EMAIL = 'megan@meganeisen.com';
 export const LINKEDIN_URL = 'https://linkedin.com/in/megan-eisen';
-export const INSTAGRAM_URL = 'https://instagram.com/meg_n_reed';
+export const INSTAGRAM_URL = 'https://instagram.com/megneisen';
 
 // Contact form endpoint (Formspree). Submitted via fetch in ContactForm.astro
 // with a plain POST `action` fallback for no-JS clients.
