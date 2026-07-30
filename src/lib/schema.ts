@@ -17,6 +17,45 @@ export const PERSON_ID = `${SITE}/#megan`;
 export const WEBSITE_ID = `${SITE}/#website`;
 export const OPTIMO_ID = `${SITE}/optimo#practice`;
 
+// Authoritative profiles Megan controls. sameAs is the single strongest signal
+// for consolidating "Megan Eisen" into one entity Google can tell apart from
+// other people with the name. Each of these should link BACK to meganeisen.com
+// for the signal to be reciprocal — see README "Brand entity".
+const SAME_AS = [
+  LINKEDIN_URL, // https://linkedin.com/in/megan-eisen
+  INSTAGRAM_URL, // https://instagram.com/meg_n_reed
+  'https://x.com/Meg_Eisen',
+  'https://medium.com/@meganeisen',
+  'https://meganeisen.substack.com',
+  'https://about.me/meganeisen',
+  'https://www.pinterest.com/meganeisen',
+  'https://github.com/meganeisen',
+];
+
+// Cities the site states Megan works between — a legitimate location signal.
+const HOME_LOCATIONS = [
+  {
+    '@type': 'Place',
+    name: 'New York City',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'New York',
+      addressRegion: 'NY',
+      addressCountry: 'US',
+    },
+  },
+  {
+    '@type': 'Place',
+    name: 'Zürich',
+    address: { '@type': 'PostalAddress', addressLocality: 'Zürich', addressCountry: 'CH' },
+  },
+  {
+    '@type': 'Place',
+    name: 'Mexico City',
+    address: { '@type': 'PostalAddress', addressLocality: 'Mexico City', addressCountry: 'MX' },
+  },
+];
+
 // The one authoritative Person node. Everything else references it by @id.
 //
 // sameAs is the highest-leverage field for entity disambiguation: every URL
@@ -33,6 +72,13 @@ export const person = {
     'Executive leading business, product, and customer experience — from founder-led companies to Fortune 500. Founder of the advisory practice Óptimo.',
   email: `mailto:${CONTACT_EMAIL}`,
   worksFor: { '@id': OPTIMO_ID },
+  mainEntityOfPage: { '@id': WEBSITE_ID },
+  homeLocation: HOME_LOCATIONS,
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Product, Design & Business Operations Executive',
+    occupationalCategory: 'Executive Leadership',
+  },
   knowsAbout: [
     'Product management',
     'Design leadership',
@@ -42,8 +88,7 @@ export const person = {
     'Hospitality and travel technology',
     'Post-acquisition integration',
   ],
-  // TODO: expand with every authoritative profile Megan controls (see README).
-  sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
+  sameAs: SAME_AS,
 };
 
 // Claims "Megan Eisen" as the site name in search results and ties the domain

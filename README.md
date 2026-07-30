@@ -127,3 +127,26 @@ photography**. Swap in licensed photos but keep the
 `linkedin.com/in/megan-eisen` · `instagram.com/meg_n_reed` ·
 `megan@meganeisen.com`. ("JPMorganChase" is intentionally one word; the
 "business / product / customer pull apart" refrain is intentional.)
+
+## Brand entity (SEO)
+
+"Megan Eisen" is a contested name in search. To win it, the site is built as a
+single, consolidated **entity graph** ([src/lib/schema.ts](src/lib/schema.ts)):
+one `Person` node with a stable `@id` (`…/#megan`), referenced by `@id` from
+every page, plus a `WebSite` node that claims "Megan Eisen" as the site name.
+Both pages emit the same nodes so Google sees one consistent entity.
+
+The strongest field is **`sameAs`** — the list of authoritative profiles Megan
+controls. Two things make it work:
+
+1. **Keep it accurate.** A wrong or dead URL weakens the entity. Update the
+   `SAME_AS` array in `schema.ts` when profiles change.
+2. **Make it reciprocal.** Each linked profile (LinkedIn, X, Medium, Substack,
+   about.me, Pinterest, GitHub, Instagram) should have its **website/link field
+   set to `https://meganeisen.com`**. Google trusts a two-way link far more than
+   a one-way one. This is the single highest-leverage off-page action — no code
+   required, done in each platform's profile settings.
+
+Also submit the sitemap in Google Search Console (`/sitemap.xml`) and, if
+available, add high-authority profiles like **Crunchbase** or **Wikidata** to
+`SAME_AS` — they carry disproportionate weight for Knowledge-Panel eligibility.
