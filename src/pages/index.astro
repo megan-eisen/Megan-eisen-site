@@ -12,6 +12,7 @@ import {
   LINKEDIN_URL,
   INSTAGRAM_URL,
 } from '../lib/site';
+import { person, website, graph } from '../lib/schema';
 
 const homeCity = CITIES.filter((c) => c.home);
 const others = CITIES.filter((c) => !c.home);
@@ -35,32 +36,8 @@ const heroWords: { text: string; accent?: boolean }[] = [
   { text: 'Fortune 500.', accent: true },
 ];
 
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Megan Eisen',
-  url: 'https://meganeisen.com',
-  image: 'https://meganeisen.com/og-megan.jpg',
-  jobTitle: 'Product, Design & Business Operations Executive',
-  email: `mailto:${CONTACT_EMAIL}`,
-  description:
-    'Executive leading business, product, and customer experience — from founder-led companies to Fortune 500. Founder of the advisory practice Óptimo.',
-  sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Óptimo',
-    url: 'https://meganeisen.com/optimo',
-  },
-  knowsAbout: [
-    'Product management',
-    'Design leadership',
-    'Business operations',
-    'Customer experience',
-    'Operating models',
-    'Hospitality and travel technology',
-    'Post-acquisition integration',
-  ],
-};
+// Home page carries the Person + WebSite nodes (the primary brand entity).
+const personSchema = graph([person, website]);
 ---
 
 <Base

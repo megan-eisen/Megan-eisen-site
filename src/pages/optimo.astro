@@ -11,6 +11,7 @@ import {
   LINKEDIN_URL,
   OPTIMO_INTRO_MAILTO,
 } from '../lib/site';
+import { person, website, optimo, graph } from '../lib/schema';
 
 // Óptimo hero headline, split for the reveal + pointer-lean effects.
 const heroWords: { text: string; accent?: boolean }[] = [
@@ -42,36 +43,9 @@ function symptomCellStyle(i: number): string {
     : `padding:1.4rem 0 1.4rem 2.4rem;${base}`;
 }
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Óptimo',
-  url: 'https://meganeisen.com/optimo',
-  image: 'https://meganeisen.com/og-optimo.jpg',
-  description:
-    'Advisory practice for founder-led businesses where the experience is the product. One engagement, one senior partner in the room.',
-  email: `mailto:${CONTACT_EMAIL}`,
-  areaServed: 'Worldwide',
-  founder: {
-    '@type': 'Person',
-    name: 'Megan Eisen',
-    url: 'https://meganeisen.com',
-  },
-  parentOrganization: {
-    '@type': 'Person',
-    name: 'Megan Eisen',
-    url: 'https://meganeisen.com',
-  },
-  serviceType: 'Executive advisory and operating-model consulting',
-  offers: {
-    '@type': 'Offer',
-    price: '18000',
-    priceCurrency: 'USD',
-    description:
-      'Monthly advisory engagement — advisory in the ear or hands-on in the org, one rate. Cancel with 15 days notice.',
-    availability: 'https://schema.org/LimitedAvailability',
-  },
-};
+// Óptimo page carries the practice node plus the same Person + WebSite nodes,
+// all cross-referenced by @id so the whole site describes one consistent entity.
+const serviceSchema = graph([optimo, person, website]);
 ---
 
 <Base
