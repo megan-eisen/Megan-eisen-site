@@ -74,6 +74,7 @@ export const person = {
   worksFor: { '@id': OPTIMO_ID },
   mainEntityOfPage: { '@id': WEBSITE_ID },
   homeLocation: HOME_LOCATIONS,
+  knowsLanguage: ['English', 'Spanish', 'German'],
   hasOccupation: {
     '@type': 'Occupation',
     name: 'Product, Design & Business Operations Executive',
