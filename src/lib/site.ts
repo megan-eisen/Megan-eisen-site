@@ -155,9 +155,9 @@ export const TIMELINE: Role[] = [
   {
     date: '2022 – 2024',
     role: 'Chief Experience Officer',
-    org: 'The Infatuation & Zagat',
+    org: 'The Infatuation',
   },
-  { date: '2021 – 2022', role: 'Vice President, Product & Design', org: 'The Infatuation' },
+  { date: '2021 – 2022', role: 'Vice President, Product & Design', org: 'The Infatuation & Zagat' },
   { date: '2019 – 2021', role: 'Head of Product Design & Ops', org: 'Avero' },
 ];
 
