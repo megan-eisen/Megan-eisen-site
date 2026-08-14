@@ -358,6 +358,7 @@ const personSchema = graph([person, website]);
                   )}
                   <a
                     href={`mailto:${CONTACT_EMAIL}?subject=Request%20the%20full%20walkthrough`}
+                    data-copy-email={CONTACT_EMAIL}
                     style="font:600 0.82rem/1 'Hanken Grotesk';color:var(--cy);text-decoration:none;border-bottom:1px solid rgba(10,255,251,0.45);padding-bottom:3px;"
                   >
                     Request the full walkthrough →
@@ -443,6 +444,7 @@ const personSchema = graph([person, website]);
             Cognita Schools, HRS Group, Four Seasons, and Intuit.
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Executive%20r%C3%A9sum%C3%A9%20request`}
+              data-copy-email={CONTACT_EMAIL}
               style="color:var(--ind);text-decoration:none;border-bottom:1.5px solid var(--ind);"
               >Request résumé →</a
             >
@@ -678,7 +680,8 @@ const personSchema = graph([person, website]);
           </p>
           <a
             data-mag
-            href={`mailto:${CONTACT_EMAIL}`}
+            data-focus-form
+            href="#contact-form"
             style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 1.9rem;font:600 0.96rem/1 'Hanken Grotesk';margin-top:1.8rem;transition:transform .15s;"
             >{CONTACT_EMAIL} →</a
           >
@@ -719,6 +722,7 @@ const personSchema = graph([person, website]);
           >
           <a
             href={`mailto:${CONTACT_EMAIL}`}
+            data-copy-email={CONTACT_EMAIL}
             class="lbl"
             style="font-size:0.58rem;color:rgba(255,255,255,0.75);text-decoration:none;">Email</a
           >

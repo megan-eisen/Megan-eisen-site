@@ -732,8 +732,10 @@ const serviceSchema = graph([optimo, person, website]);
         rel="noopener"
         style="font-size:0.82rem;color:#4C5560;text-decoration:none;">LinkedIn</a
       >
-      <a href={`mailto:${CONTACT_EMAIL}`} style="font-size:0.82rem;color:#4C5560;text-decoration:none;"
-        >Email</a
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        data-copy-email={CONTACT_EMAIL}
+        style="font-size:0.82rem;color:#4C5560;text-decoration:none;">Email</a
       >
       <span style="font-size:0.82rem;color:var(--mut);">© 2026</span>
     </div>

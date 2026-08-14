@@ -143,12 +143,17 @@ const analyticsEnabled = import.meta.env.PROD && GA_MEASUREMENT_ID.length > 0;
     <slot />
     <script>
       import { initMotion } from '../scripts/motion';
+      import { initEmailLinks } from '../scripts/email';
       // Run after the DOM is parsed. Astro places module scripts at end of body,
       // so the DOM is already available, but guard just in case.
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMotion);
-      } else {
+      const init = () => {
         initMotion();
+        initEmailLinks();
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
       }
     </script>
   </body>
