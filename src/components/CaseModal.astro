@@ -6,7 +6,15 @@
 //
 // To go live: flip CASES[2].hasModal to true in src/lib/site.ts and drop real
 // screenshots into the four gallery slots below (see README POST-LAUNCH).
-import { QAS_PAIN, QAS_STEPS, QAS_OUTCOMES, QAS_GALLERY, CONTACT_EMAIL } from '../lib/site';
+import {
+  QAS_PAIN,
+  QAS_STEPS,
+  QAS_OUTCOMES,
+  QAS_GALLERY,
+  CONTACT_EMAIL,
+  QAS_MODAL_SUBJECT,
+  QAS_MODAL_BODY,
+} from '../lib/site';
 ---
 
 <div
@@ -165,8 +173,10 @@ import { QAS_PAIN, QAS_STEPS, QAS_OUTCOMES, QAS_GALLERY, CONTACT_EMAIL } from '.
           >← Back to work</button
         >
         <a
-          href={`mailto:${CONTACT_EMAIL}?subject=Quality%20at%20Scale%20walkthrough`}
-          data-copy-email={CONTACT_EMAIL}
+          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+            QAS_MODAL_SUBJECT
+          )}&body=${encodeURIComponent(QAS_MODAL_BODY)}`}
+          data-compose
           style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--ind);color:#fff;text-decoration:none;padding:0.82rem 1.5rem;font:600 0.88rem/1 'Hanken Grotesk';"
           >Request the full walkthrough →</a
         >

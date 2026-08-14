@@ -30,6 +30,44 @@ export const OPTIMO_INTRO_MAILTO =
 export const BOOKING_URL =
   'https://calendar.google.com/appointments/schedules/AcZssZ2x_hmMok1Da3YHVrfB-iSu8zQtZVrGSPjx6hCXSJMSfgNHMplKZ7i9q-cU8pa8tkfeVfVpxqw7';
 
+// --- Email compose templates ---
+// Used by the résumé / walkthrough links, which open a Gmail/Outlook/Mail/Copy
+// chooser (see src/scripts/email.ts). The subject + body are encoded into each
+// link's mailto href, which the chooser parses; mailto is also the no-JS
+// fallback. Case-card walkthrough subjects are built from the case name.
+export const EMAIL_RESUME_SUBJECT = 'Résumé request';
+export const EMAIL_RESUME_BODY = `Hi Megan,
+
+Could you share your executive résumé? A bit about me and why I'm asking:
+
+Name:
+Company / role:
+What this is regarding:
+
+Thanks,`;
+
+export const WALKTHROUGH_SUBJECT_PREFIX = 'Request case study walkthrough – ';
+export const EMAIL_WALKTHROUGH_BODY = `Hi Megan,
+
+I'd like the full walkthrough of this work. A bit of context:
+
+Name:
+Company / role:
+What caught my attention:
+
+Thanks,`;
+
+export const QAS_MODAL_SUBJECT = 'Quality at Scale walkthrough';
+export const QAS_MODAL_BODY = `Hi Megan,
+
+I'd like the full "Quality at Scale" walkthrough. A bit of context:
+
+Name:
+Company / role:
+What caught my attention:
+
+Thanks,`;
+
 // --- Megan page: live world clocks ---
 export interface City {
   name: string;

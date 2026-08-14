@@ -4,7 +4,9 @@
 // Gmail or another webmail client. Instead:
 //   [data-copy-email]  → copy the address to the clipboard + show a toast
 //   [data-focus-form]  → scroll to and focus the on-site contact form
-// The mailto: href is kept on each link as a no-JS fallback.
+//   [data-compose]     → open a small chooser: Gmail / Outlook / Mail app / Copy
+// The mailto: href is kept on each link as a no-JS fallback, and is the source
+// of truth the chooser parses for recipient / subject / body.
 // ---------------------------------------------------------------------------
 
 const reduced =
@@ -63,7 +65,163 @@ async function copyEmail(email: string): Promise<boolean> {
   }
 }
 
+// --- Compose chooser (Gmail / Outlook / Mail app / Copy) --------------------
+
+interface Compose {
+  to: string;
+  subject: string;
+  body: string;
+  mailto: string;
+}
+
+function parseMailto(href: string): Compose {
+  const raw = href.replace(/^mailto:/i, '');
+  const [addr, query = ''] = raw.split('?');
+  const params = new URLSearchParams(query);
+  return {
+    to: decodeURIComponent(addr),
+    subject: params.get('subject') ?? '',
+    body: params.get('body') ?? '',
+    mailto: href,
+  };
+}
+
+function gmailUrl(c: Compose): string {
+  const p = new URLSearchParams({ view: 'cm', fs: '1', to: c.to, su: c.subject, body: c.body });
+  return `https://mail.google.com/mail/?${p.toString()}`;
+}
+
+function outlookUrl(c: Compose): string {
+  // office.com covers Microsoft 365 / work accounts. Personal Outlook.com users
+  // are redirected by Microsoft; the Mail-app option covers Outlook desktop.
+  const p = new URLSearchParams({ to: c.to, subject: c.subject, body: c.body });
+  return `https://outlook.office.com/mail/deeplink/compose?${p.toString()}`;
+}
+
+let openMenu: HTMLElement | null = null;
+let menuAnchor: HTMLElement | null = null;
+
+function closeMenu() {
+  openMenu?.remove();
+  openMenu = null;
+  menuAnchor = null;
+  document.removeEventListener('keydown', onMenuKey, true);
+  document.removeEventListener('click', onOutside, true);
+  window.removeEventListener('scroll', closeMenu, true);
+  window.removeEventListener('resize', closeMenu, true);
+}
+
+function onOutside(e: Event) {
+  if (openMenu && !openMenu.contains(e.target as Node)) closeMenu();
+}
+function onMenuKey(e: KeyboardEvent) {
+  if (e.key === 'Escape') {
+    const a = menuAnchor;
+    closeMenu();
+    a?.focus();
+  }
+}
+
+function menuItem(label: string): HTMLElement {
+  const base =
+    "display:block;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;" +
+    "padding:0.6rem 0.9rem;font:600 0.78rem/1.1 'Hanken Grotesk';color:#14161A;text-decoration:none;white-space:nowrap;";
+  const el = document.createElement(label === 'Copy address' || label === 'Mail app' ? 'button' : 'a');
+  el.textContent = label;
+  el.setAttribute('role', 'menuitem');
+  el.style.cssText = base;
+  el.addEventListener('mouseenter', () => {
+    el.style.background = '#14161A';
+    el.style.color = '#EFF2F6';
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.background = 'transparent';
+    el.style.color = '#14161A';
+  });
+  return el;
+}
+
+function openChooser(anchor: HTMLElement, c: Compose) {
+  closeMenu();
+  const menu = document.createElement('div');
+  menu.setAttribute('role', 'menu');
+  menu.style.cssText =
+    'position:fixed;z-index:99999;background:#EFF2F6;border:1px solid #14161A;' +
+    'box-shadow:0 14px 36px rgba(0,0,0,0.20);min-width:200px;padding:0.3rem 0;';
+
+  const heading = document.createElement('div');
+  heading.textContent = 'Open in';
+  heading.style.cssText =
+    "font:600 0.5rem/1 'Hanken Grotesk';letter-spacing:0.18em;text-transform:uppercase;" +
+    'color:#7B818B;padding:0.55rem 0.9rem 0.5rem;';
+  menu.appendChild(heading);
+
+  const gmail = menuItem('Gmail') as HTMLAnchorElement;
+  gmail.href = gmailUrl(c);
+  gmail.target = '_blank';
+  gmail.rel = 'noopener noreferrer';
+  gmail.addEventListener('click', () => closeMenu());
+
+  const outlook = menuItem('Outlook') as HTMLAnchorElement;
+  outlook.href = outlookUrl(c);
+  outlook.target = '_blank';
+  outlook.rel = 'noopener noreferrer';
+  outlook.addEventListener('click', () => closeMenu());
+
+  const mail = menuItem('Mail app');
+  mail.addEventListener('click', () => {
+    window.location.href = c.mailto;
+    closeMenu();
+  });
+
+  const copy = menuItem('Copy address');
+  copy.addEventListener('click', async () => {
+    const ok = await copyEmail(c.to);
+    showToast(ok ? `Copied · ${c.to}` : c.to);
+    closeMenu();
+  });
+
+  [gmail, outlook, mail, copy].forEach((i) => menu.appendChild(i));
+  document.body.appendChild(menu);
+
+  // Position under the anchor, clamped to the viewport.
+  const r = anchor.getBoundingClientRect();
+  const mw = menu.offsetWidth;
+  const mh = menu.offsetHeight;
+  let left = Math.min(r.left, window.innerWidth - mw - 8);
+  left = Math.max(8, left);
+  let top = r.bottom + 8;
+  if (top + mh + 8 > window.innerHeight) top = Math.max(8, r.top - mh - 8);
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+
+  openMenu = menu;
+  menuAnchor = anchor;
+  (menu.querySelector('[role="menuitem"]') as HTMLElement | null)?.focus();
+
+  // Defer listener attach so the opening click doesn't immediately close it.
+  window.setTimeout(() => {
+    document.addEventListener('keydown', onMenuKey, true);
+    document.addEventListener('click', onOutside, true);
+    window.addEventListener('scroll', closeMenu, true);
+    window.addEventListener('resize', closeMenu, true);
+  }, 0);
+}
+
 export function initEmailLinks() {
+  document.querySelectorAll<HTMLAnchorElement>('[data-compose]').forEach((el) => {
+    if ((el as any).__compose) return;
+    (el as any).__compose = true;
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (openMenu && menuAnchor === el) {
+        closeMenu();
+        return;
+      }
+      openChooser(el, parseMailto(el.getAttribute('href') || ''));
+    });
+  });
+
   document.querySelectorAll<HTMLAnchorElement>('[data-copy-email]').forEach((el) => {
     if ((el as any).__copy) return;
     (el as any).__copy = true;
