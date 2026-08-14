@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { GA_MEASUREMENT_ID } from '../lib/site';
 
 interface Props {
   title: string;
@@ -41,6 +42,11 @@ const pathname = Astro.url.pathname.endsWith('/')
   : `${Astro.url.pathname}/`;
 const canonical = new URL(pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+
+// Load Google Analytics only in production builds and only once a real
+// Measurement ID is configured — so `astro dev` and un-configured builds
+// send nothing.
+const analyticsEnabled = import.meta.env.PROD && GA_MEASUREMENT_ID.length > 0;
 ---
 
 <!doctype html>
@@ -48,6 +54,25 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {
+      analyticsEnabled && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          />
+          <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', GA_MEASUREMENT_ID);
+          </script>
+        </>
+      )
+    }
 
     <!-- Primary meta -->
     <title>{title}</title>

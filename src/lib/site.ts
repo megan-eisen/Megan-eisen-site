@@ -11,6 +11,13 @@ export const INSTAGRAM_URL = 'https://instagram.com/megneisen';
 // with a plain POST `action` fallback for no-JS clients.
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgyalyd';
 
+// Google Analytics 4 Measurement ID (format: G-XXXXXXXXXX). Public by design —
+// it ships in the page HTML. Leave empty to disable analytics entirely. The
+// tag only loads in production builds (never in `astro dev`), so local work
+// doesn't pollute the data. Set this in analytics.google.com → Admin →
+// Data Streams → your web stream.
+export const GA_MEASUREMENT_ID = 'G-G1NX8V1EEF';
+
 // Prefilled mailto for the Óptimo "Book an intro call" CTA.
 export const OPTIMO_INTRO_MAILTO =
   'mailto:megan@meganeisen.com?subject=%C3%93ptimo%20%E2%80%94%20intro%20call&body=Hi%20Megan%2C%0A%0AI%27d%20like%20to%20book%20an%20intro%20call.%0A%0ACompany%3A%20%0AWhere%20we%20are%3A%20%0AWhat%27s%20on%20my%20mind%3A%20%0A%0AThanks%2C';
