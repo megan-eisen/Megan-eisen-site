@@ -91,6 +91,7 @@ const serviceSchema = graph([optimo, person, website]);
         href={bookingHref}
         target={bookingTarget}
         rel={bookingRel}
+        data-book-cta="header"
         style="background:var(--ind);color:#fff;padding:0.58rem 1.1rem;font:600 0.78rem/1 'Hanken Grotesk';text-decoration:none;transition:transform .15s;"
         >Book an intro call</a
       >
@@ -144,6 +145,7 @@ const serviceSchema = graph([optimo, person, website]);
             href={bookingHref}
             target={bookingTarget}
             rel={bookingRel}
+            data-book-cta="hero"
             style="display:inline-flex;align-items:center;justify-content:space-between;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 1.6rem;font:600 0.94rem/1 'Hanken Grotesk';transition:transform .15s;"
             >Book an intro call →</a
           >
@@ -529,6 +531,7 @@ const serviceSchema = graph([optimo, person, website]);
           href={bookingHref}
           target={bookingTarget}
           rel={bookingRel}
+          data-book-cta="getting_started"
           style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:0.95rem 1.7rem;font:600 0.94rem/1 'Hanken Grotesk';white-space:nowrap;transition:transform .15s;"
           >Book an intro call →</a
         >
@@ -705,6 +708,7 @@ const serviceSchema = graph([optimo, person, website]);
         href={bookingHref}
         target={bookingTarget}
         rel={bookingRel}
+        data-book-cta="start_section"
         style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 2rem;font:600 0.98rem/1 'Hanken Grotesk';margin-top:2.2rem;transition:transform .15s;"
         >Book an intro call →</a
       >
@@ -742,3 +746,19 @@ const serviceSchema = graph([optimo, person, website]);
     animation-play-state: paused;
   }
 </style>
+
+<!-- Fire a clean GA4 conversion event when a booking CTA is clicked. CTAs open
+     in a new tab, so the page isn't unloaded and the beacon sends reliably.
+     No-ops when gtag isn't present (dev, or analytics disabled). -->
+<script>
+  document.querySelectorAll('[data-book-cta]').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', 'book_intro_call', {
+        cta_location: el.getAttribute('data-book-cta'),
+        link_url: el.getAttribute('href'),
+      });
+    });
+  });
+</script>
+
