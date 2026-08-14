@@ -10,8 +10,16 @@ import {
   CONTACT_EMAIL,
   LINKEDIN_URL,
   OPTIMO_INTRO_MAILTO,
+  BOOKING_URL,
 } from '../lib/site';
 import { person, website, optimo, graph } from '../lib/schema';
+
+// Every "Book an intro call" CTA points here. When a scheduler URL is set it
+// opens in a new tab; otherwise it falls back to the prefilled email.
+const bookingHref = BOOKING_URL || OPTIMO_INTRO_MAILTO;
+const bookingIsExternal = bookingHref.startsWith('http');
+const bookingTarget = bookingIsExternal ? '_blank' : undefined;
+const bookingRel = bookingIsExternal ? 'noopener noreferrer' : undefined;
 
 // Óptimo hero headline, split for the reveal + pointer-lean effects.
 const heroWords: { text: string; accent?: boolean }[] = [
@@ -80,7 +88,9 @@ const serviceSchema = graph([optimo, person, website]);
       </nav>
       <a
         data-mag
-        href="#start"
+        href={bookingHref}
+        target={bookingTarget}
+        rel={bookingRel}
         style="background:var(--ind);color:#fff;padding:0.58rem 1.1rem;font:600 0.78rem/1 'Hanken Grotesk';text-decoration:none;transition:transform .15s;"
         >Book an intro call</a
       >
@@ -131,7 +141,9 @@ const serviceSchema = graph([optimo, person, website]);
         <div style="display:flex;flex-direction:column;gap:0.9rem;">
           <a
             data-mag
-            href="#start"
+            href={bookingHref}
+            target={bookingTarget}
+            rel={bookingRel}
             style="display:inline-flex;align-items:center;justify-content:space-between;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 1.6rem;font:600 0.94rem/1 'Hanken Grotesk';transition:transform .15s;"
             >Book an intro call →</a
           >
@@ -501,8 +513,8 @@ const serviceSchema = graph([optimo, person, website]);
           <div
             style="display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;font:600 1rem/1.4 'Hanken Grotesk';color:#fff;"
           >
-            <span>Send one email</span><span style="color:var(--cy);">→</span><span
-              >A 30-minute call</span
+            <span>Book a call</span><span style="color:var(--cy);">→</span><span
+              >A 30-minute conversation</span
             ><span style="color:var(--cy);">→</span><span>Start within the month</span>
           </div>
           <p
@@ -514,7 +526,9 @@ const serviceSchema = graph([optimo, person, website]);
         </div>
         <a
           data-mag
-          href="#start"
+          href={bookingHref}
+          target={bookingTarget}
+          rel={bookingRel}
           style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:0.95rem 1.7rem;font:600 0.94rem/1 'Hanken Grotesk';white-space:nowrap;transition:transform .15s;"
           >Book an intro call →</a
         >
@@ -688,7 +702,9 @@ const serviceSchema = graph([optimo, person, website]);
       </p>
       <a
         data-mag
-        href={OPTIMO_INTRO_MAILTO}
+        href={bookingHref}
+        target={bookingTarget}
+        rel={bookingRel}
         style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--cy);color:var(--ink);text-decoration:none;padding:1rem 2rem;font:600 0.98rem/1 'Hanken Grotesk';margin-top:2.2rem;transition:transform .15s;"
         >Book an intro call →</a
       >

@@ -18,9 +18,17 @@ export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgyalyd';
 // Data Streams → your web stream.
 export const GA_MEASUREMENT_ID = 'G-G1NX8V1EEF';
 
-// Prefilled mailto for the Óptimo "Book an intro call" CTA.
+// Prefilled mailto for the Óptimo "Book an intro call" CTA — used as the
+// fallback until a scheduler URL is set below.
 export const OPTIMO_INTRO_MAILTO =
   'mailto:megan@meganeisen.com?subject=%C3%93ptimo%20%E2%80%94%20intro%20call&body=Hi%20Megan%2C%0A%0AI%27d%20like%20to%20book%20an%20intro%20call.%0A%0ACompany%3A%20%0AWhere%20we%20are%3A%20%0AWhat%27s%20on%20my%20mind%3A%20%0A%0AThanks%2C';
+
+// Public booking-page URL for the "Book an intro call" CTAs (Google Calendar
+// Appointment Scheduling or Calendly — either works). Every booking CTA on the
+// Óptimo page points here and opens in a new tab. Leave empty to fall back to
+// OPTIMO_INTRO_MAILTO (the email flow) so nothing breaks before it's set.
+export const BOOKING_URL =
+  'https://calendar.google.com/appointments/schedules/AcZssZ2x_hmMok1Da3YHVrfB-iSu8zQtZVrGSPjx6hCXSJMSfgNHMplKZ7i9q-cU8pa8tkfeVfVpxqw7';
 
 // --- Megan page: live world clocks ---
 export interface City {
