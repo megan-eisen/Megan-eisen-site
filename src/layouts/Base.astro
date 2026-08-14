@@ -62,14 +62,13 @@ const analyticsEnabled = import.meta.env.PROD && GA_MEASUREMENT_ID.length > 0;
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           />
-          <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', GA_MEASUREMENT_ID);
-          </script>
+          {/* set:html (not define:vars) keeps this at top level so `gtag` is a
+              real global — matches Google's canonical snippet and stays usable
+              for custom events later. The ID is a controlled G-XXXX constant. */}
+          <script
+            is:inline
+            set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`}
+          />
         </>
       )
     }
